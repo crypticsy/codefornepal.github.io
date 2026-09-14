@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66983412-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-66983412-1');
+  </script>
+  <!-- End Google Analytics -->
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Community of volunteers helping address Nepal's challenges using civic tech to innovate, organize and advocate digital literacy">
+  <meta name="author" content="">
+  <meta name="keyword" content="code for nepal, c4n, volunteer, code, nepal" />
+  <meta property="og:locale" content="en_US">
+  <meta property="fb:pages" content="201272103415379">
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Harnessing Data Science For Agricultural Crops Prediction">
+<meta property="og:description" content="">
+<meta property="og:url" content="/2023/05/24/harnessing-data-science-for-agricultural-crops-prediction.html">
+<meta property="og:site_name" content="Code for Nepal">
+<meta property="og:image" content="">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Harnessing Data Science For Agricultural Crops Prediction">
+<meta name="twitter:site" content="@codefornepal">
+<meta name="twitter:image" content="">
+<link rel="canonical" href="https://codefornepal.org/">
+<link rel="icon" href="/assets/img/c4n-icon.jpg">
+
+
+  <title>
+    
+    Harnessing Data Science For Agricultural Crops Prediction | Code for Nepal
+    
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="/assets/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- Custom fonts for this template -->
+  <link href="/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this theme -->
+  <link href="/assets/css/agency.css" rel="stylesheet">
+
+  <!-- Global responsive design tokens -->
+  <style>
+    /* Ensure nav always has proper top offset for fixed nav (64px) */
+    body { padding-top: 64px; }
+
+    /* Page layouts get extra top padding for content readability */
+    
+    #pagecontainer {
+      padding-top: 3rem;
+      padding-bottom: 5rem;
+    }
+    @media (max-width: 991px) {
+      #pagecontainer { padding-top: 2rem; }
+    }
+    
+
+    /* Responsive grid helpers used across all sections */
+    @media (max-width: 768px) {
+      [style*="grid-template-columns:35% 30% 35%"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="gap:4rem"] { gap: 2rem !important; }
+      [style*="padding:6rem 0"] { padding: 3.5rem 0 !important; }
+      [style*="padding:5rem 0"] { padding: 3rem 0 !important; }
+    }
+
+    /* Details/summary FAQ animation */
+    details > div {
+      animation: fadeInDown 0.2s ease;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+  </style>
+
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation -->
+<nav id="mainNav" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:#111827; box-shadow:0 2px 12px rgba(0,0,0,0.25); ">
+  <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:64px;">
+
+    <!-- Logo -->
+    <a href="/" style="display:flex; align-items:center; text-decoration:none; flex-shrink:0;">
+      
+      <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:44px; width:auto; display:block;">
+      
+    </a>
+
+    <!-- Desktop links -->
+    <div id="navDesktopLinks" style="display:flex; align-items:center; gap:0.25rem; flex:1; justify-content:flex-end;">
+      
+        
+          <a href="/about/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">About</a>
+        
+      
+        
+          <a href="/fellowship2026/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Fellowship</a>
+        
+      
+        
+          <a href="/projects/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Projects</a>
+        
+      
+        
+          <a href="/blog/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Blog</a>
+        
+      
+        
+          <a href="/joinus/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Join Us</a>
+        
+      
+
+
+    </div>
+
+    <!-- Mobile hamburger button -->
+    <button id="navToggle" type="button" aria-label="Toggle navigation"
+            style="display:none; background:transparent; border:none; color:white; cursor:pointer; padding:0.5rem; line-height:1;"
+            onclick="(function(){var m=document.getElementById('navMobileMenu'); var open=(m.style.display==='block'); m.style.display=open?'none':'block';})()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div id="navMobileMenu" style="display:none; background:#1f2937; border-top:1px solid rgba(255,255,255,0.1); padding:1rem 1.5rem;">
+    
+      
+        <a href="/about/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">About</a>
+      
+    
+      
+        <a href="/fellowship2026/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Fellowship</a>
+      
+    
+      
+        <a href="/projects/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Projects</a>
+      
+    
+      
+        <a href="/blog/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Blog</a>
+      
+    
+      
+        <a href="/joinus/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Join Us</a>
+      
+    
+
+  </div>
+</nav>
+
+<style>
+@media (max-width: 767px) {
+  #navDesktopLinks { display: none !important; }
+  #navToggle { display: block !important; }
+}
+</style>
+<!-- End Navigation -->
+
+
+
+
+<div class="container blog" id="pagecontainer">
+  <div class="row">
+  <div class="col-md-12">
+    <h1 class="title">Harnessing Data Science For Agricultural Crops Prediction</h1>
+    <p>24 May 2023 - Sadhana Panthi</p>
+    <p>
+      <p>Using AI to determine optimal crop selection can have a significant impact on ending world hunger, particularly in poor developing countries like Nepal. Even though Nepal is an agricultural country, we import a huge amount of food materials every year which make the trade deficit of Nepal even worse. By leveraging AI technologies such as machine learning and data analysis, we can analyze various factors like climate, soil quality, market demand, and available resources. This data-driven approach helps farmers make informed decisions about which crops to plant, increasing agricultural productivity and improving food security. AI algorithms can provide personalized recommendations based on local conditions, enabling farmers to optimize their yields, reduce crop failures, and maximize profits. Ultimately, AI-driven crop selection can contribute to sustainable farming practices, alleviate poverty, and combat hunger in Nepal and similar regions worldwide.</p>
+
+<p>I personally believe that even the uneducated people in the remote parts of the world should get equal opportunity to make their life better leveraging the power of AI and ML. This projects aims to help such people by recommending right kind of crops to maximize their production and profit.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*nWrFYdhySS2t0pb2" alt="" /></p>
+
+<p>In this blog post, we will explore a data science project focused on agricultural crop prediction, highlighting its significance, methodology, and potential benefits.</p>
+
+<h2 id="dataset">Dataset</h2>
+
+<p>The dataset that we’ll be using is: <a href="https://www.kaggle.com/datasets/manikantasanjayv/crop-recommender-dataset-with-soil-nutrients">httpswww.kaggle.com/datasets/manikantasanjayv/crop-recommender-dataset-with-soil-nutrients</a></p>
+
+<p>This is what the dataset looks like:</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*xdq-aUBsuNHX04Ti" alt="" /></p>
+
+<h2 id="importing-libraries-and-loading-data">Importing Libraries and Loading Data</h2>
+
+<p>To begin, we import necessary libraries such as NumPy, Pandas, Seaborn, Matplotlib, and IPython Widgets. These libraries will help us manipulate and visualize the data effectively. Additionally, we import the dataset containing soil and climate information using the Pandas library.</p>
+
+<p>import numpy as np</p>
+
+<p>import pandas as pd</p>
+
+<p>import seaborn as sns</p>
+
+<p>import matplotlib.pyplot as plt</p>
+
+<p>from ipywidgets import interact</p>
+
+<p>import warnings</p>
+
+<p>warnings.filterwarnings(‘ignore’)</p>
+
+<p>data=pd.read_csv(“Crop_recommendation.csv”)</p>
+
+<p>Next, we utilize the Pandas DataFrame to calculate and display the average ratios of nitrogen (N), phosphorous (P), and potassium (K) in the soil. These nutrients are essential for plant growth and provide valuable insights into soil fertility. The code snippet then proceeds to calculate and display the average temperature, relative humidity, pH value of the soil, and rainfall. These climatic factors play a crucial role in determining suitable crop choices.</p>
+
+<h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+
+<p>Now ,we utilize the popular data visualization libraries, Matplotlib and Seaborn, to create a grid of subplots. Each subplot represents the distribution of a specific agricultural condition for different crops.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*GNCuGVwoXZJ0oXoS" alt="" /></p>
+
+<p>The first subplot focuses on nitrogen levels (N) in the soil. By utilizing a histogram plot, we can observe the frequency and spread of nitrogen levels across different crops. Similarly, the second subplot showcases the distribution of phosphorous (P) levels, while the third subplot displays the distribution of potassium (K) levels. Moving on to the fourth subplot, it represents the distribution of temperature. Temperature plays a crucial role in crop growth and development, and understanding its distribution helps identify suitable temperature ranges for specific crops. The fifth subplot focuses on rainfall, providing insights into the amount and frequency of precipitation. Next, the sixth subplot examines the distribution of humidity, which is another critical factor affecting crop health and productivity. The seventh subplot visualizes the distribution of soil pH levels. pH level directly influences nutrient availability and crop performance, making it vital to assess its distribution across different crops.</p>
+
+<h2 id="evaluation-metrics">Evaluation Metrics</h2>
+
+<p>Since this is a supervised classification learning, following metrics have been used:</p>
+
+<ol>
+  <li>Accuracy</li>
+  <li>Precision</li>
+  <li>Recall</li>
+  <li>F1 Score</li>
+</ol>
+
+<h2 id="determining-optimum-clusters">Determining Optimum Clusters</h2>
+
+<p>K-means clustering is a widely used algorithm that partitions data points into clusters based on their similarity. The code snippet begins by importing the necessary libraries, including scikit-learn’s KMeans module. Then, it prepares the data for clustering by removing the labels column and selecting all the values from the dataset. The shape of the data is then printed to gain an understanding of its dimensions.</p>
+
+<p>from sklearn.cluster import KMeans</p>
+
+<p><em>#removing the labels column</em></p>
+
+<p>x = data.drop([‘label’], axis=1)</p>
+
+<p><em>#selecting all the values of data</em></p>
+
+<p>x = x.values</p>
+
+<p><em>#checking the shape</em></p>
+
+<p>print(x.shape)</p>
+
+<p>(2200, 7)</p>
+
+<p>Moving on to the main part of the code, we define an empty list called wcss (Within-Cluster Sum of Squares). This list will store the calculated WCSS values for different numbers of clusters.A loop is then executed from 1 to 10, where each iteration creates a KMeans object with a specific number of clusters. To gain insights into the optimal number of clusters, the Matplotlib library is used to create a line plot.</p>
+
+<p>plt.rcParams[‘figure.figsize’] = (10,4)</p>
+
+<p>wcss = []</p>
+
+<p>for i in range(1,11):</p>
+
+<p>km = KMeans(n_clusters = i, init = ’k-means++’, max_iter = 2000, n_init = 10, random_state = 0)</p>
+
+<p>km.fit(x)</p>
+
+<p>wcss.append(km.inertia_)</p>
+
+<p><em>#Plotting the results</em></p>
+
+<p>plt.plot(range(1,11), wcss)</p>
+
+<p>plt.title(‘Elbow Method’, fontsize = 20)</p>
+
+<p>plt.xlabel(‘No of Clusters’)</p>
+
+<p>plt.ylabel(‘wcss’)</p>
+
+<p>plt.show()</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*GeYDMJpC804vor2u" alt="" /></p>
+
+<p>The resulting plot is known as the Elbow Method plot. It helps us identify the point of inflection or the “elbow” in the curve.</p>
+
+<h2 id="splitting-the-dataset-and-analyzing-correlation">Splitting the Dataset and analyzing correlation</h2>
+
+<p>Next, we split the dataset into input features and target variables for predictive modeling. Additionally, we will analyze the correlations between different variables using a heatmap visualization.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*39K-bUsRVEi0zq5F" alt="" /></p>
+
+<h2 id="data-preprocessing-and-training">Data Preprocessing and Training</h2>
+
+<p>We standardize and tidy up our data to improve model performance.Here, we standardize our data using StandardScaler().The ColumnTransformer is used to create a transformer object that applies the StandardScaler to the numeric columns in the dataset, ensuring that all features are on the same scale.Also, the dataset is split into training and testing sets.</p>
+
+<p>from sklearn.preprocessing import StandardScaler</p>
+
+<p>from sklearn.compose import ColumnTransformer</p>
+
+<p>transformer = ColumnTransformer([(‘num’, StandardScaler(), x.columns)])</p>
+
+<p>Moving on to the model training phase, the code creates an SVM pipeline using the Pipeline module from sklearn.pipeline. The pipeline includes the preprocessing transformer and the SVM model from sklearn.svm. This ensures that the preprocessing steps are seamlessly applied to the data before training the SVM model.</p>
+
+<p>from sklearn.pipeline import Pipeline</p>
+
+<p>from sklearn.svm import SVC</p>
+
+<p>svm_pipe = Pipeline(steps=[(‘preprocessing’, transformer), (‘model’, SVC())])</p>
+
+<p>svm_pipe.fit(x_train, y_train)</p>
+
+<p>y_pred = svm_pipe.predict(x_test)</p>
+
+<p>evaluate_model(“SVM”, y_pred, y_test)</p>
+
+<p>show_confusion_matrix(y_pred, y_test)</p>
+
+<p>Additionally, the show_confusion_matrix() function visualizes the confusion matrix using seaborn’s heatmap. The confusion matrix provides insights into the performance of the model by showing the number of true positives, true negatives, false positives, and false negatives.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*1bdFMRW85QSQjcdX" alt="" /></p>
+
+<p>SVM</p>
+
+<p>accuracy: 0.9772727272727273</p>
+
+<p>f1_score 0.9773200952744351</p>
+
+<p>precision 0.9799524821583645</p>
+
+<p>recall 0.9772727272727273</p>
+
+<p>Decision Tree Classifier</p>
+
+<p>from sklearn.tree import DecisionTreeClassifier</p>
+
+<p>tree_pipe = Pipeline(steps=[(“preprocessing”, transformer), (“model”, DecisionTreeClassifier())])</p>
+
+<p>tree_pipe.fit(x_train, y_train)</p>
+
+<p>y_pred = tree_pipe.predict(x_test)</p>
+
+<p>evaluate_model(“DecisionTreeClassifier” ,y_pred, y_test)</p>
+
+<p>show_confusion_matrix(y_pred, y_test)</p>
+
+<p>DecisionTreeClassifier</p>
+
+<p>accuracy: 0.9886363636363636</p>
+
+<p>f1_score 0.9886072979597981</p>
+
+<p>precision 0.9890874125874125</p>
+
+<p>recall 0.9886363636363636</p>
+
+<h2 id="model-selection">Model Selection</h2>
+
+<p>I played around with different algorithms to see which model fits the data best and generalizes well to test data. Logistic regressions, SVM and decision tree worked well but I chose decision tree classifier model as final model. 98% accuracy in test data proves that the decision tree is generalizing well in real-world examples.</p>
+
+<h2 id="making-predictions-and-displaying-the-suggested-crop">Making predictions and Displaying the suggested Crop</h2>
+
+<p>Finally, we create a dictionary and input values which represent the climatic conditions and the soil nutrients for which we seek crop recommendations. We utilize our trained machine learning model to predict the suggested crop based on the provided climatic data. Since we are using a pipeline, we do not need to perform data preprocessing manually while predicting. The pipeline does the preprocessing and gets the prediction using the learned model. Furthermore, I have saved the weights and biases in a pickle file so that we do not need to train the model every time we need to predict. Once the prediction is made, it prints the suggested crop based on the given climatic conditions.</p>
+
+<p>This is how a user can give input values to get the recommendation:</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*Iiwk4oXFPMhVpS3O" alt="" /></p>
+
+<h2 id="scope-and-benefits">Scope and benefits</h2>
+
+<ol>
+  <li>Enhanced yield</li>
+  <li>Risk mitigation</li>
+  <li>Sustainable farming practices</li>
+  <li>Improved decision making</li>
+  <li>The model can continue learning and be better</li>
+  <li>Knowledge transfer</li>
+  <li>Improved financial condition</li>
+  <li>Betterment of the lifestyle of poor communities.</li>
+  <li>This is a very lightweight model and is freely available for anyone to use.</li>
+</ol>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>While crop recommendation systems offer tremendous potential, certain challenges must be addressed. These include the need for reliable data sources, accessibility for farmers in remote areas, and user-friendly interfaces. However, advancements in technology and increased connectivity hold promise for overcoming these obstacles and extending the reach of these systems to a wider user base.</p>
+
+<p>Looking ahead, crop recommendation systems can be further enhanced by incorporating real-time data, remote sensing techniques, and artificial intelligence algorithms. This would provide farmers with even more precise recommendations, leading to better crop management, increased sustainability, and improved food security.</p>
+
+<p>Github repo: <a href="https://github.com/sadhana70/agricultural-crop-recommendation">https://github.com/sadhana70/agricultural-crop-recommendation</a></p>
+
+<p>Code for Nepal would like to thank <a href="https://www.datacamp.com/donates">DataCamp Donates</a> for providing Sadhana, and several other fellows access to DataCamp, to learn and grow.</p>
+
+    </p>
+  </div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://codefornepal-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+	<!-- Footer -->
+<footer id="footer" style="background:#111827; color:white; padding:4rem 0 0;">
+  <div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+
+    <!-- Donation CTA strip -->
+    <div style="background:#1f2937; border-radius:8px; padding:1.5rem 2rem; margin-bottom:3rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="margin:0; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.9rem; color:white; text-transform:uppercase; letter-spacing:0.08em;">Support our mission</p>
+        <p style="margin:0.25rem 0 0; font-size:0.82rem; color:rgba(255,255,255,0.6); font-family:'Droid Serif','Georgia',serif;">Every contribution helps expand digital literacy in Nepal.</p>
+      </div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:inline;">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="A8L4MMC7NP5ZS"/>
+        <button type="submit"
+                style="background:#dc2626; color:white; padding:0.6rem 1.5rem; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; font-family:'Montserrat',sans-serif; border:none; border-radius:9999px; cursor:pointer; white-space:nowrap;"
+                onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#dc2626'">
+          Donate Now
+        </button>
+        <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" alt="" />
+      </form>
+    </div>
+
+    <!-- 3-column grid -->
+    <div id="footerGrid" style="display:grid; grid-template-columns:35% 30% 35%; gap:3rem; padding-bottom:3rem;">
+
+      <!-- Column 1: Logo + mission + social -->
+      <div>
+        
+        <a href="/" style="display:inline-block; margin-bottom:1rem;">
+          <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:40px; width:auto; filter:brightness(0) invert(1);">
+        </a>
+        
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.7; margin:0 0 1.5rem; font-family:'Droid Serif','Georgia',serif;">
+          Increasing digital literacy and open data use to empower communities across Nepal.
+        </p>
+        <!-- Social icons -->
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-twitter"></i>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-github"></i>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          
+        </div>
+      </div>
+
+      <!-- Column 2: Quick links -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Quick Links</h4>
+        <ul style="list-style:none; margin:0; padding:0;">
+          <li style="margin-bottom:0.6rem;"><a href="/about/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">About</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/fellowship2026/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Fellowship 2026</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/projects/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Projects</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/blog/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Blog</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/joinus/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Join Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Connect</h4>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.75); margin:0 0 0.5rem; font-family:'Montserrat',sans-serif;">
+          <i class="fas fa-envelope" style="margin-right:0.5rem; color:#dc2626;"></i>
+          <a href="mailto:contact@codefornepal.org" style="color:rgba(255,255,255,0.75); text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">contact@codefornepal.org</a>
+        </p>
+        <div style="margin-top:1rem;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-linkedin-in" style="width:16px; text-align:center;"></i>
+            <span>www.linkedin.com</span>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-twitter" style="width:16px; text-align:center;"></i>
+            <span>twitter.com</span>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-facebook-f" style="width:16px; text-align:center;"></i>
+            <span>www.facebook.com</span>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-github" style="width:16px; text-align:center;"></i>
+            <span>github.com</span>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-instagram" style="width:16px; text-align:center;"></i>
+            <span>instagram.com</span>
+          </a>
+          
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div id="footerBottom" style="border-top:1px solid rgba(255,255,255,0.1); padding:1.5rem 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p style="margin:0; font-size:0.78rem; color:rgba(255,255,255,0.4); font-family:'Montserrat',sans-serif;">
+        &copy; 2026 Code for Nepal. All rights reserved.
+      </p>
+      <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+        <a href="/codeofconduct/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Code of Conduct</a>
+        <a href="/privacy/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- License line -->
+    
+    <div style="padding-bottom:1.5rem;">
+      <p style="margin:0; font-size:0.72rem; color:rgba(255,255,255,0.3); line-height:1.6; font-family:'Droid Serif','Georgia',serif;">This work is licensed under a Creative Commons Attribution - ShareAlike 3.0 License! <br>  Code for Nepal is a registered 501(c)(3) nonprofit organization. <br> EIN: 47-3620037</p>
+    </div>
+    
+
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  #footerGrid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  #footerBottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+</style>
+<!-- End Footer -->
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="/assets/js/jquery.easing.min.js"></script>
+
+	<!-- Contact form JavaScript -->
+	<script src="/assets/js/jqBootstrapValidation.js"></script>
+	<script src="/assets/js/contact_me.js"></script>
+
+	<!-- Custom scripts for this template -->
+	<script src="/assets/js/agency.min.js"></script>
+
+</body>
+
+</html>

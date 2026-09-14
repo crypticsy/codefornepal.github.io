@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66983412-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-66983412-1');
+  </script>
+  <!-- End Google Analytics -->
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Community of volunteers helping address Nepal's challenges using civic tech to innovate, organize and advocate digital literacy">
+  <meta name="author" content="">
+  <meta name="keyword" content="code for nepal, c4n, volunteer, code, nepal" />
+  <meta property="og:locale" content="en_US">
+  <meta property="fb:pages" content="201272103415379">
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Building my own IMDB movies dataset using Scrapy">
+<meta property="og:description" content="">
+<meta property="og:url" content="/2023/04/12/building-my-own-imdb-dataset-using-scrapy.html">
+<meta property="og:site_name" content="Code for Nepal">
+<meta property="og:image" content="">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Building my own IMDB movies dataset using Scrapy">
+<meta name="twitter:site" content="@codefornepal">
+<meta name="twitter:image" content="">
+<link rel="canonical" href="https://codefornepal.org/">
+<link rel="icon" href="/assets/img/c4n-icon.jpg">
+
+
+  <title>
+    
+    Building my own IMDB movies dataset using Scrapy | Code for Nepal
+    
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="/assets/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- Custom fonts for this template -->
+  <link href="/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this theme -->
+  <link href="/assets/css/agency.css" rel="stylesheet">
+
+  <!-- Global responsive design tokens -->
+  <style>
+    /* Ensure nav always has proper top offset for fixed nav (64px) */
+    body { padding-top: 64px; }
+
+    /* Page layouts get extra top padding for content readability */
+    
+    #pagecontainer {
+      padding-top: 3rem;
+      padding-bottom: 5rem;
+    }
+    @media (max-width: 991px) {
+      #pagecontainer { padding-top: 2rem; }
+    }
+    
+
+    /* Responsive grid helpers used across all sections */
+    @media (max-width: 768px) {
+      [style*="grid-template-columns:35% 30% 35%"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="gap:4rem"] { gap: 2rem !important; }
+      [style*="padding:6rem 0"] { padding: 3.5rem 0 !important; }
+      [style*="padding:5rem 0"] { padding: 3rem 0 !important; }
+    }
+
+    /* Details/summary FAQ animation */
+    details > div {
+      animation: fadeInDown 0.2s ease;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+  </style>
+
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation -->
+<nav id="mainNav" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:#111827; box-shadow:0 2px 12px rgba(0,0,0,0.25); ">
+  <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:64px;">
+
+    <!-- Logo -->
+    <a href="/" style="display:flex; align-items:center; text-decoration:none; flex-shrink:0;">
+      
+      <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:44px; width:auto; display:block;">
+      
+    </a>
+
+    <!-- Desktop links -->
+    <div id="navDesktopLinks" style="display:flex; align-items:center; gap:0.25rem; flex:1; justify-content:flex-end;">
+      
+        
+          <a href="/about/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">About</a>
+        
+      
+        
+          <a href="/fellowship2026/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Fellowship</a>
+        
+      
+        
+          <a href="/projects/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Projects</a>
+        
+      
+        
+          <a href="/blog/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Blog</a>
+        
+      
+        
+          <a href="/joinus/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Join Us</a>
+        
+      
+
+
+    </div>
+
+    <!-- Mobile hamburger button -->
+    <button id="navToggle" type="button" aria-label="Toggle navigation"
+            style="display:none; background:transparent; border:none; color:white; cursor:pointer; padding:0.5rem; line-height:1;"
+            onclick="(function(){var m=document.getElementById('navMobileMenu'); var open=(m.style.display==='block'); m.style.display=open?'none':'block';})()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div id="navMobileMenu" style="display:none; background:#1f2937; border-top:1px solid rgba(255,255,255,0.1); padding:1rem 1.5rem;">
+    
+      
+        <a href="/about/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">About</a>
+      
+    
+      
+        <a href="/fellowship2026/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Fellowship</a>
+      
+    
+      
+        <a href="/projects/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Projects</a>
+      
+    
+      
+        <a href="/blog/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Blog</a>
+      
+    
+      
+        <a href="/joinus/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Join Us</a>
+      
+    
+
+  </div>
+</nav>
+
+<style>
+@media (max-width: 767px) {
+  #navDesktopLinks { display: none !important; }
+  #navToggle { display: block !important; }
+}
+</style>
+<!-- End Navigation -->
+
+
+
+
+<div class="container blog" id="pagecontainer">
+  <div class="row">
+  <div class="col-md-12">
+    <h1 class="title">Building my own IMDB movies dataset using Scrapy</h1>
+    <p>12 Apr 2023 - Shyamron Dongol</p>
+    <p>
+      <p>Scrapy, a free and open-source web crawling framework, was first release on June 26, 2008 licensed under BSD. It is used for web scraping and extracting structured data. Scrapy is widely used by many employers, for both freelancing and in-house jobs for various applications from data mining to monitoring websites. or changes. Scrapy is popularly used due to its ability to handle requests asynchronously, i.e., it can execute multiple tasks concurrently, such as making requests, processing responses, and saving data. It allows you to focus on the data extraction process utilizing CSS selectors and XPath expressions rather than the complex internals of how spiders are supposed to function. With Scrapy, you can easily build complex scraping pipelines that can handle multiple pages, parse complex HTML structures, and store data in various formats.</p>
+
+<p>Web scraping is a technique for gathering data or information on web pages. Web crawling is usually the first step of data tasks. This blog discusses how powerful scrapy is and how it can be implemented using Python. Movies information such as title, rating, no. of reviews, genres and other information are scraped from imdb.com site. Obtaining this information is the first step towards tasks such as movie recommendation systems, discover trends on movies, visualize how movies’ popularity is dependent on various factors and other visualizations and evaluations.</p>
+
+<p>For example, you can analyze the genres of movies that are currently popular and see how they have changed over time. Furthermore, you can analyze the movie information obtained from Scrapy to see which actors, directors, or production companies are associated with popular movies and use this information to predict the success of future movies.</p>
+
+<p>This blog provides a step-by-step guide on creating a Scrapy project and a spider to scrape data from IMDB. Let’s get going.</p>
+
+<h1 id="getting-started-prerequisites">Getting Started (Prerequisites)</h1>
+
+<ol>
+  <li>Install scrapy.</li>
+</ol>
+
+<p>Firstly, we have to install scrapy. If you are using anaconda, you can use conda to install scrapy such as:</p>
+
+<p>conda install -c conda-forge scrapy</p>
+
+<p>Or using pip as:</p>
+
+<p>pip install scrapy</p>
+
+<h1 id="creating-our-scrapy-project">Creating our scrapy project</h1>
+
+<h2 id="step-1">Step 1:</h2>
+
+<p>To create our scrapy project, run following command in your appropriate directory.</p>
+
+<p>scrapy startproject imdbscrapy</p>
+
+<p>Here, imdbscrapy is the scrapy project name and our scrapy project folder would look like this:</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:728/1*893_Vv12_AG2e-91LojEiw.png" alt="" /></p>
+
+<p>The created project folder contains multiple files each having specific purpose.</p>
+
+<p><em>Scrapy.cfg — Deploys configuration file.</em></p>
+
+<p><em><strong>init</strong>.py — Initialization file</em></p>
+
+<p><em>Item.py — Project items definition file</em></p>
+
+<p><em>Middlewares.py — Project middle wares file</em></p>
+
+<p><em>Pipelines.py — Project pipelines file</em></p>
+
+<p><em>Setting.py — Project settings file</em></p>
+
+<p><em>Spiders/ — A directory where later you will put your spiders.</em></p>
+
+<p>Spiders are classes that you define and that Scrapy uses to scrape information from websites.</p>
+
+<h2 id="step-2">Step 2:</h2>
+
+<p>Creating spider: To create a spider, we navigate towards the spider folder and run following command:</p>
+
+<p>scrapy genspider imdb_movies imdb.com</p>
+
+<p>After executing above command, python file named imdb_movies is created in spiders directory with start URL <a href="https://www.imdb.com/">https://www.imdb.com</a>. All the commands will be written here to scrape the information.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:572/1*jITOZixb3c2kawXEnnCqAA.png" alt="" /></p>
+
+<p>imdb_movies.py would contain python code given as follows.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:822/1*WMw7r67_sn566UrdIUg7ZQ.png" alt="" /></p>
+
+<h2 id="step-3">Step 3:</h2>
+
+<p>Now, navigating toward <a href="https://www.imdb.com/search/title/?genres=action&amp;languages=en&amp;sort=user_rating,desc&amp;title_type=feature">Feature Film, Action, English (Sorted by IMDb Rating Descending) — IMDb</a>, i.e., the movies with genre “action” web URL are selected to scrape. It consists of more than 20k+ action movies separated in multiple pages with each page containing maximum 50 movies.</p>
+
+<p>We would want to scrape following features from each action movies:</p>
+
+<ol>
+  <li>Title</li>
+  <li>Rating</li>
+  <li>No. of reviews</li>
+  <li>Directors and Actors</li>
+  <li>Genres</li>
+  <li>Year</li>
+  <li>Runtime</li>
+</ol>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*NFasfq50w3auqBg0z-fN3A.png" alt="" /></p>
+
+<h2 id="step-4">Step 4:</h2>
+
+<p>In imdb_movies.py, specify our required urls and genres lists. In this case, since we are only scraping for ‘action’ genre, so genre is a list containing ‘action’. If you want to scrape other genres, you can add it on the list.</p>
+
+<p>Now, yield scrapy request for each url in urls list. In this case there is only one url i.e., for ‘action’ genre.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class ImdbMoviesSpider(scrapy.Spider):
+    name = 'imdb_movies'
+    allowed_domains = ['www.imdb.com']
+    start_urls = 'http://www.imdb.com/'
+    genres=['action']
+
+    def start_requests(self):
+        urls=[]
+        for genre in self.genres:\
+            urls.append(f"{self.start_urls}/search/title/?genres={genre}&amp;languages=en&amp;sort=user_rating,desc&amp;title_type=feature")
+        for url in urls:
+            yield scrapy.Request(url=url,callback=self.parse)
+
+    def parse(self, response):
+        pass
+
+</code></pre></div></div>
+<p>Step 5:
+——-</p>
+
+<p>We can use CSS or Xpath to select elements from the websites. First thing to do is navigate towards the required website and right click on the mouse and Inspect. This will display he website’s HTML, CSS, and JavaScript code.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1234/1*Ce_e4L2yUPNU-37Ja3V2MQ.png" alt="" /></p>
+
+<p>Select Ctrl+ shift + c and click on required elements in the web that you want to extract. This will display the HTML code for the specific feature.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*_Hiwb-t8hSTveT4o5MF2Tg.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*ML25OpQ1tzIm4YFkUFglQg.png" alt="" /></p>
+
+<p>Here, the div class lister-list contains all the movies each separated under div class list-item mode-advanced. Each required items are selected again using span, div or p.</p>
+
+<p>As default, the features variables are set to empty string (‘ ‘) , as all the movies may not have values.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def parse(self, response):
+    movies_list=response.css('div.lister-list')
+    for movie in movies_list:
+        movies=movie.css('div.lister-item.mode-advanced')
+        year=''
+        title=''
+        rating=''
+        reviews=''
+        directors_actors=''
+        genres=''
+        gross=''
+        runtime=''
+</code></pre></div></div>
+
+<p>If the div class name is unique then we can directly use the class name. If the same class name is used for other divisions as well, we may want to be specific about which division we want to scrape. Following is the illustration using CSS expression:</p>
+
+<p>for items in movies:
+    rating=items.css(“div.inline-block.ratings-imdb-rating strong::text”).get()
+    runtime=items.css(“span.runtime::text”).get()
+    year=items.css(‘span.lister-item-year.text-muted.unbold::text’).get()</p>
+
+<p>Referencing to <a href="https://cdn-images-1.medium.com/max/900/1*ML25OpQ1tzIm4YFkUFglQg.png">figure </a>above, to extract title text, we can use ‘a’ tag, but other divisions also have ‘a’ tag, so we specify the unique division that title ‘a’ tag belong to and then scrape within the division.</p>
+
+<p>title=items.css(“h3.lister-item-header a::text”).get()<br />
+genres=items.css(“p.text-muted  span.genre::text”).get()</p>
+
+<p>Syntax:</p>
+
+<p><em>feature = response.css(“div.parent-class div.child-class::text”).get()</em></p>
+
+<h2 id="step-6">Step 6:</h2>
+
+<p>Another way of writing expressions is using nth-child. Code snapshot is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for item in items.css('p.sort-num_votes-visible'):
+    reviews=item.css("span:nth-child(2)::text").get()
+    gross=item.css('span:nth-child(5)::text').get()
+</code></pre></div></div>
+
+<p>In above code, the second and fifth child span within element ‘p’ are being accessed to obtain number of reviews and gross obtained from the movie</p>
+
+<h2 id="step-7">Step 7:</h2>
+
+<p>We can also use Xpath for extracting elements.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for item in items.css('div.lister-item-content'):
+    for names in item.xpath('.//p[3]'):
+        directors_actors = [name.strip() for name in names.css('::text').extract()]
+
+
+</code></pre></div></div>
+
+<p>Here, actors and directors’ names are extracted from third ‘p’ element within div class lister-item-content.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>If you want to learn more about detailed information and syntax relating to scrapy Xpath and CSS expressions, refer this tutorial [Scrapy Python: How to Make Web Crawler in Python</td>
+      <td>DataCamp](https://www.datacamp.com/tutorial/making-web-crawlers-scrapy-python) .</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="step-8">Step 8:</h2>
+
+<p>Doing this will extract required elements from one page of website. We can further modify the code to extract from multiple pages.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Ae3fDtizuOExatOuWPPtFg.png" alt="" /></p>
+
+<p>Code snippet is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>next_page = response.css('a.lister-page-next.next-page').attrib['href']
+next_page = f"{self.start_urls}/{next_page}"
+print(f"temp:{next_page}")
+if next_page is not None:
+    yield response.follow(next_page,callback=self.parse)
+
+</code></pre></div></div>
+<p>In this code, href is extracted from ‘a’ element to navigate to next page. This code allows the spider to follow links to the next page of search results until there are no more pages.</p>
+
+<h2 id="step-9">Step 9:</h2>
+
+<p>The spider is run by following command:</p>
+
+<p>scrapy crawl imdb_movies -O movies.csv</p>
+
+<p>A dataset name movies.csv is obtained.</p>
+
+<p>Compiling all the code snippets, complete code for our spider is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import scrapy\
+class ImdbMoviesSpider(scrapy.Spider):
+    name = 'imdb_movies'
+    allowed_domains = ['www.imdb.com']
+    start_urls = 'http://www.imdb.com/'
+    genres=['action']
+
+    def start_requests(self):
+        urls=[]
+        for genre in self.genres:
+            urls.append(f"{self.start_urls}/search/title/?genres={genre}&amp;languages=en&amp;sort=user_rating,desc&amp;title_type=feature")
+        for url in urls:
+            yield scrapy.Request(url=url,callback=self.parse)
+
+    def parse(self, response):
+        movies_list=response.css('div.lister-list')
+        for movie in movies_list:
+            movies=movie.css('div.lister-item.mode-advanced')
+            year=''
+            title=''
+            rating=''
+            reviews=''
+            directors_actors=''
+            genres=''
+            gross=''
+            runtime=''
+            for items in movies:
+                rating=items.css("div.inline-block.ratings-imdb-rating strong::text").get()
+                runtime=items.css("span.runtime::text").get()
+                year=items.css('span.lister-item-year.text-muted.unbold::text').get()
+                title=items.css("h3.lister-item-header a::text").get()\
+                genres=items.css("p.text-muted  span.genre::text").get()
+
+                for item in items.css('p.sort-num_votes-visible'):
+                    reviews=item.css("span:nth-child(2)::text").get()
+                    gross=item.css('span:nth-child(5)::text').get()
+
+                for item in items.css('div.lister-item-content'):
+                    for names in item.xpath('.//p[3]'):
+                        directors_actors = [name.strip() for name in names.css('::text').extract()]
+                yield{\
+                    "year":year,
+                    "title":title,
+                    'rating':rating,
+                    'no_of_reviews':reviews,
+                    'directors_actors':directors_actors,
+                    'genres':genres.strip(),
+                    'runtime':runtime,
+                    'gross':gross
+                }
+
+        next_page = response.css('a.lister-page-next.next-page').attrib['href']
+        next_page = f"{self.start_urls}/{next_page}"
+        print(f"temp:{next_page}")
+        if next_page is not None:
+            yield response.follow(next_page,callback=self.parse)
+
+</code></pre></div></div>
+
+<p>After executing the spider, all 20,464 action movies from IMDB were extracted. The dataset contains a lot of dirty values and empty cells. Data manipulations and data preprocessing can be done before applying the data to proper use. Complete code along with extracted dataset can be found in GitHub <a href="https://github.com/shyamron/imdb_movies_scrapy.git">here</a>.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>By implementing the spider code, 20k+ action movies were scraped in about 15–20 minutes. This clearly show how power scrapy is. You can explore further about scrapy <a href="https://docs.scrapy.org/en/latest/intro/tutorial.html">here </a>to scrape your own dataset.</p>
+
+<h2 id="references">References:</h2>
+
+<ul>
+  <li><a href="https://www.datacamp.com/tutorial/making-web-crawlers-scrapy-python">Scrapy Python: How to Make Web Crawler in Python, DataCamp</a></li>
+  <li><a href="https://doc.scrapy.org/en/latest/intro/tutorial.html">Scrapy Tutorial — Scrapy 2.8.0 documentation</a></li>
+  <li><a href="https://www.experfy.com/blog/using-scrapy-to-build-your-own-dataset">Using Scrapy to Build your Own Dataset, Experfy Insights</a></li>
+  <li><a href="https://app.datacamp.com/learn/courses/web-scraping-with-python">Web Scraping with Python — DataCamp Learn</a></li>
+</ul>
+
+<p>Code for Nepal would like to thank <a href="https://www.datacamp.com/donates">DataCamp Donates</a> for providing Shyamron, and several other fellows access to DataCamp, to learn and grow.</p>
+
+    </p>
+  </div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://codefornepal-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+	<!-- Footer -->
+<footer id="footer" style="background:#111827; color:white; padding:4rem 0 0;">
+  <div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+
+    <!-- Donation CTA strip -->
+    <div style="background:#1f2937; border-radius:8px; padding:1.5rem 2rem; margin-bottom:3rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="margin:0; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.9rem; color:white; text-transform:uppercase; letter-spacing:0.08em;">Support our mission</p>
+        <p style="margin:0.25rem 0 0; font-size:0.82rem; color:rgba(255,255,255,0.6); font-family:'Droid Serif','Georgia',serif;">Every contribution helps expand digital literacy in Nepal.</p>
+      </div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:inline;">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="A8L4MMC7NP5ZS"/>
+        <button type="submit"
+                style="background:#dc2626; color:white; padding:0.6rem 1.5rem; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; font-family:'Montserrat',sans-serif; border:none; border-radius:9999px; cursor:pointer; white-space:nowrap;"
+                onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#dc2626'">
+          Donate Now
+        </button>
+        <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" alt="" />
+      </form>
+    </div>
+
+    <!-- 3-column grid -->
+    <div id="footerGrid" style="display:grid; grid-template-columns:35% 30% 35%; gap:3rem; padding-bottom:3rem;">
+
+      <!-- Column 1: Logo + mission + social -->
+      <div>
+        
+        <a href="/" style="display:inline-block; margin-bottom:1rem;">
+          <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:40px; width:auto; filter:brightness(0) invert(1);">
+        </a>
+        
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.7; margin:0 0 1.5rem; font-family:'Droid Serif','Georgia',serif;">
+          Increasing digital literacy and open data use to empower communities across Nepal.
+        </p>
+        <!-- Social icons -->
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-twitter"></i>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-github"></i>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          
+        </div>
+      </div>
+
+      <!-- Column 2: Quick links -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Quick Links</h4>
+        <ul style="list-style:none; margin:0; padding:0;">
+          <li style="margin-bottom:0.6rem;"><a href="/about/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">About</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/fellowship2026/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Fellowship 2026</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/projects/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Projects</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/blog/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Blog</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/joinus/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Join Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Connect</h4>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.75); margin:0 0 0.5rem; font-family:'Montserrat',sans-serif;">
+          <i class="fas fa-envelope" style="margin-right:0.5rem; color:#dc2626;"></i>
+          <a href="mailto:contact@codefornepal.org" style="color:rgba(255,255,255,0.75); text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">contact@codefornepal.org</a>
+        </p>
+        <div style="margin-top:1rem;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-linkedin-in" style="width:16px; text-align:center;"></i>
+            <span>www.linkedin.com</span>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-twitter" style="width:16px; text-align:center;"></i>
+            <span>twitter.com</span>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-facebook-f" style="width:16px; text-align:center;"></i>
+            <span>www.facebook.com</span>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-github" style="width:16px; text-align:center;"></i>
+            <span>github.com</span>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-instagram" style="width:16px; text-align:center;"></i>
+            <span>instagram.com</span>
+          </a>
+          
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div id="footerBottom" style="border-top:1px solid rgba(255,255,255,0.1); padding:1.5rem 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p style="margin:0; font-size:0.78rem; color:rgba(255,255,255,0.4); font-family:'Montserrat',sans-serif;">
+        &copy; 2026 Code for Nepal. All rights reserved.
+      </p>
+      <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+        <a href="/codeofconduct/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Code of Conduct</a>
+        <a href="/privacy/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- License line -->
+    
+    <div style="padding-bottom:1.5rem;">
+      <p style="margin:0; font-size:0.72rem; color:rgba(255,255,255,0.3); line-height:1.6; font-family:'Droid Serif','Georgia',serif;">This work is licensed under a Creative Commons Attribution - ShareAlike 3.0 License! <br>  Code for Nepal is a registered 501(c)(3) nonprofit organization. <br> EIN: 47-3620037</p>
+    </div>
+    
+
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  #footerGrid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  #footerBottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+</style>
+<!-- End Footer -->
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="/assets/js/jquery.easing.min.js"></script>
+
+	<!-- Contact form JavaScript -->
+	<script src="/assets/js/jqBootstrapValidation.js"></script>
+	<script src="/assets/js/contact_me.js"></script>
+
+	<!-- Custom scripts for this template -->
+	<script src="/assets/js/agency.min.js"></script>
+
+</body>
+
+</html>

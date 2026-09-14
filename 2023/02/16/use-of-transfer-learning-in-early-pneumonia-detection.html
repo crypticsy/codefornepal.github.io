@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66983412-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-66983412-1');
+  </script>
+  <!-- End Google Analytics -->
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Community of volunteers helping address Nepal's challenges using civic tech to innovate, organize and advocate digital literacy">
+  <meta name="author" content="">
+  <meta name="keyword" content="code for nepal, c4n, volunteer, code, nepal" />
+  <meta property="og:locale" content="en_US">
+  <meta property="fb:pages" content="201272103415379">
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Use of Transfer Learning in Early Pneumonia Detection">
+<meta property="og:description" content="">
+<meta property="og:url" content="/2023/02/16/use-of-transfer-learning-in-early-pneumonia-detection.html">
+<meta property="og:site_name" content="Code for Nepal">
+<meta property="og:image" content="">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Use of Transfer Learning in Early Pneumonia Detection">
+<meta name="twitter:site" content="@codefornepal">
+<meta name="twitter:image" content="">
+<link rel="canonical" href="https://codefornepal.org/">
+<link rel="icon" href="/assets/img/c4n-icon.jpg">
+
+
+  <title>
+    
+    Use of Transfer Learning in Early Pneumonia Detection | Code for Nepal
+    
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="/assets/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- Custom fonts for this template -->
+  <link href="/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this theme -->
+  <link href="/assets/css/agency.css" rel="stylesheet">
+
+  <!-- Global responsive design tokens -->
+  <style>
+    /* Ensure nav always has proper top offset for fixed nav (64px) */
+    body { padding-top: 64px; }
+
+    /* Page layouts get extra top padding for content readability */
+    
+    #pagecontainer {
+      padding-top: 3rem;
+      padding-bottom: 5rem;
+    }
+    @media (max-width: 991px) {
+      #pagecontainer { padding-top: 2rem; }
+    }
+    
+
+    /* Responsive grid helpers used across all sections */
+    @media (max-width: 768px) {
+      [style*="grid-template-columns:35% 30% 35%"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="gap:4rem"] { gap: 2rem !important; }
+      [style*="padding:6rem 0"] { padding: 3.5rem 0 !important; }
+      [style*="padding:5rem 0"] { padding: 3rem 0 !important; }
+    }
+
+    /* Details/summary FAQ animation */
+    details > div {
+      animation: fadeInDown 0.2s ease;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+  </style>
+
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation -->
+<nav id="mainNav" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:#111827; box-shadow:0 2px 12px rgba(0,0,0,0.25); ">
+  <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:64px;">
+
+    <!-- Logo -->
+    <a href="/" style="display:flex; align-items:center; text-decoration:none; flex-shrink:0;">
+      
+      <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:44px; width:auto; display:block;">
+      
+    </a>
+
+    <!-- Desktop links -->
+    <div id="navDesktopLinks" style="display:flex; align-items:center; gap:0.25rem; flex:1; justify-content:flex-end;">
+      
+        
+          <a href="/about/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">About</a>
+        
+      
+        
+          <a href="/fellowship2026/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Fellowship</a>
+        
+      
+        
+          <a href="/projects/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Projects</a>
+        
+      
+        
+          <a href="/blog/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Blog</a>
+        
+      
+        
+          <a href="/joinus/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Join Us</a>
+        
+      
+
+
+    </div>
+
+    <!-- Mobile hamburger button -->
+    <button id="navToggle" type="button" aria-label="Toggle navigation"
+            style="display:none; background:transparent; border:none; color:white; cursor:pointer; padding:0.5rem; line-height:1;"
+            onclick="(function(){var m=document.getElementById('navMobileMenu'); var open=(m.style.display==='block'); m.style.display=open?'none':'block';})()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div id="navMobileMenu" style="display:none; background:#1f2937; border-top:1px solid rgba(255,255,255,0.1); padding:1rem 1.5rem;">
+    
+      
+        <a href="/about/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">About</a>
+      
+    
+      
+        <a href="/fellowship2026/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Fellowship</a>
+      
+    
+      
+        <a href="/projects/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Projects</a>
+      
+    
+      
+        <a href="/blog/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Blog</a>
+      
+    
+      
+        <a href="/joinus/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Join Us</a>
+      
+    
+
+  </div>
+</nav>
+
+<style>
+@media (max-width: 767px) {
+  #navDesktopLinks { display: none !important; }
+  #navToggle { display: block !important; }
+}
+</style>
+<!-- End Navigation -->
+
+
+
+
+<div class="container blog" id="pagecontainer">
+  <div class="row">
+  <div class="col-md-12">
+    <h1 class="title">Use of Transfer Learning in Early Pneumonia Detection</h1>
+    <p>16 Feb 2023 - Arisha Prasai</p>
+    <p>
+      <p>Transfer learning is a technique in machine learning where a pre-trained model is used as a starting point for a new task, rather than training a new model from scratch. It is beneficial for disease detection because it can leverage the features learned from a large dataset to improve the accuracy of smaller datasets, leading to faster and more efficient diagnosis.<br />
+Now, let’s apply this concept to detecting diseases like pneumonia. Traditional machine learning models require large datasets to learn from, which can be a challenge in the medical field where data is often scarce or private. But with transfer learning, we can take advantage of pre-trained models that have already learned complex features from huge datasets of images. By fine-tuning these models on smaller datasets of medical images, we can achieve higher accuracy and faster diagnoses.</p>
+
+<p>Why Pneumonia Detection?</p>
+
+<ul>
+  <li>Pneumonia is more common among children below 5 years of age.</li>
+</ul>
+
+<p>-According to the UNICEF report 2019, it causes death of a child in every 39 seconds in Nepal.</p>
+
+<p>-Most deaths due to pneumonia occur among children of poorest households who are affected by the convergence of poor nutrition, poor hygiene and poor immunization rates.</p>
+
+<p>This project is a small example of how a pre-trained model can be used for early disease detection. We will be using VGG-19 which is a popular deep learning architecture that has been widely used in computer vision tasks and for medical imaging. Moreover, VGG19 has been pre-trained on a large dataset of natural images of size 224 * 224 , which allows it to recognize patterns and shapes that are common to many images. This pre-training enables transfer learning, which is especially beneficial for medical imaging tasks where data is limited. And by fine-tuning the pre-trained VGG19 model on a smaller dataset of X-ray images of pneumonic and non-pneumonic patients on Kaggle, it can quickly learn to recognize specific disease patterns and help clinicians diagnose diseases at an earlier stage.</p>
+
+<p>There are many other pre-trained models like VGG-19 including ResNet, DenseNet, Inception, U-Net or even CovidNet. We could have used any one but for the sake of this post, we will be using VGG-19.</p>
+
+<p>Now, lets dive into it.</p>
+
+<p>The dataset can be found here:<br />
+<a href="https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia">https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia</a></p>
+
+<p>IMPORTING LIBRARIES</p>
+
+<p>Importing the libraries and other dependencies is the first step before dealing with any data . So, we do that in the code below. Also, since it is time consuming to download the whole dataset from Kaggle, we use Kaggle API to avoid that.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*x-pJMrwYvAaYVuTfYF2tmA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*wHWZm8KJHCkGvOM6sgtwpQ.png" alt="" /></p>
+
+<p>Now since every ML model takes numbers as input, we need to find a way to represent each image in form of numbers. So, we create a function to that takes image as input and converts into a matrix of (150,150).Although VGG-19 was trained on input images of (224,224), the reason for creating a (150,150) matrix is because sessions kept on crashing on Google Colab. So there is definite loss of data but hopefully not so much.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*6YwUsgJAfUd3QrPkRBszmw.png" alt="" /></p>
+
+<p>NORMALISING THE DATA<br />
+Normalizing image data is an important step in preprocessing image data before feeding it into a machine learning model. One reason for normalizing image data is to reduce the effects of lighting and color variations in the input data. This is especially important in medical imaging, where images may have different brightness and contrast levels due to variations in imaging equipment, patient positioning, or lighting conditions.</p>
+
+<p>Likewise, another reason for normalizing image data is to prevent numerical instability during model training. Some machine learning algorithms are sensitive to the scale of the input data, and may not perform well if the input values are too large or too small. We do this by dividing by 255.0 of each value in the matrix because the pixels range from 0–255. This will make all values to align to the same scale of rane 0–1 like shown in the code snippet below:</p>
+
+<p><img src="https://miro.medium.com/max/700/1*I_yrUdTItbrosmJ0QFmdDw.png" alt="" /></p>
+
+<p>DEFINING TARGET VARIABLES</p>
+
+<p>Next, we define target variables and apply image augmentation technique. Image augmentation is used to increase the size of the training dataset, improve model generalization, reduce overfitting, introduce noise, and increase model robustness to image variations and distortions by zooming, altering the orientations, adding filler values and so on.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*eLvIiXuvK2rPVmU1yScV9A.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*pUe7CXhnzhI_fq7wdoHatg.png" alt="" /></p>
+
+<p>In the code above, we use flow_from_directory and ImageDataGenerator class in Keras that saves input data in the form of NumPy arrays, which are a commonly used data structure in Python for numerical computing.</p>
+
+<p>COMPILING THE VGG-19 MODEL</p>
+
+<p>Since we are using a pre-trained model, its is necessary to NOT TRAIN the weights of the first 19 layers . Then, we flatten the ouput of the model to connect it with other 2 Dense layers. The last Dense layer has only one neuron as this use case is a binary classification i.e. the patient is either pneumonic or normal. We have set sigmoid function as activation that gives probability from 0–1, where having 0.5 or greater value means the model predicted patient to have pneumonia and lesser than 0.5 indicates that the model predicted that the patient doesn’t have pneumonia. In this way, a fully connected neural network is made using pre-trained model.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*fGNHQ3HfCz2sRc15v5v3wA.png" alt="" /></p>
+
+<p>Below is the snippet of the neural networks formed. Notice that the parameters that are trainable are the parameters of the last two Dense layers.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*J5AUOForFQR-ASwwpdbDtQ.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*3w0xeah_ksxoi6GEbhkhiw.png" alt="" /></p>
+
+<p>TRAINING THE MODEL ON THE DATA</p>
+
+<p><img src="https://miro.medium.com/max/700/1*Y1y86P60ICIb7eTLnES-4w.png" alt="" /></p>
+
+<p>RESULT</p>
+
+<p>Data augmentation has been used as this was an imbalanced dataset to prevent overfitting. The model scored an accuracy of 89% on the training set and 87% on the validation set. The model is still overfitting to some extent.</p>
+
+<p>We then save this model as an h5 file and later into a joblib file which can later be used for direct prediction without having to train again.</p>
+
+<p>DEMO OF THE MODEL</p>
+
+<p>In the demo below, 3/3 images of untrained dataset of pneumonic and normal X-rays were used to predict the result. In this case, the model seemed to have performed well by classifying all of them correctly.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*NOuM9Qchm1Ky_9S4nJ3q8g.gif" alt="" /></p>
+
+<p>However, the model may still be improved using hyperparameter techniques to prevent overfitting and gradually increasing the accuracy. This can be done by changing the number of layers ,neurons or trying different activation techniques.</p>
+
+<p>In conclusion, transfer learning makes life easier by enabling us to make our own customized model for wide variety of computer vision use cases. Computer aided diagnostics using DL models can assist doctors in early and accurate disease detection, aid human decision making, save time and resources or can even simplify complex procedures. Hence, the use of transfer learning in early disease detection is ample.</p>
+
+<p>Code for Nepal would like to thank <a href="https://www.datacamp.com/donates">DataCamp Donates</a> for providing Arisha, and several other fellows access to DataCamp, to learn and grow.</p>
+
+    </p>
+  </div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://codefornepal-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+	<!-- Footer -->
+<footer id="footer" style="background:#111827; color:white; padding:4rem 0 0;">
+  <div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+
+    <!-- Donation CTA strip -->
+    <div style="background:#1f2937; border-radius:8px; padding:1.5rem 2rem; margin-bottom:3rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="margin:0; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.9rem; color:white; text-transform:uppercase; letter-spacing:0.08em;">Support our mission</p>
+        <p style="margin:0.25rem 0 0; font-size:0.82rem; color:rgba(255,255,255,0.6); font-family:'Droid Serif','Georgia',serif;">Every contribution helps expand digital literacy in Nepal.</p>
+      </div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:inline;">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="A8L4MMC7NP5ZS"/>
+        <button type="submit"
+                style="background:#dc2626; color:white; padding:0.6rem 1.5rem; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; font-family:'Montserrat',sans-serif; border:none; border-radius:9999px; cursor:pointer; white-space:nowrap;"
+                onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#dc2626'">
+          Donate Now
+        </button>
+        <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" alt="" />
+      </form>
+    </div>
+
+    <!-- 3-column grid -->
+    <div id="footerGrid" style="display:grid; grid-template-columns:35% 30% 35%; gap:3rem; padding-bottom:3rem;">
+
+      <!-- Column 1: Logo + mission + social -->
+      <div>
+        
+        <a href="/" style="display:inline-block; margin-bottom:1rem;">
+          <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:40px; width:auto; filter:brightness(0) invert(1);">
+        </a>
+        
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.7; margin:0 0 1.5rem; font-family:'Droid Serif','Georgia',serif;">
+          Increasing digital literacy and open data use to empower communities across Nepal.
+        </p>
+        <!-- Social icons -->
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-twitter"></i>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-github"></i>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          
+        </div>
+      </div>
+
+      <!-- Column 2: Quick links -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Quick Links</h4>
+        <ul style="list-style:none; margin:0; padding:0;">
+          <li style="margin-bottom:0.6rem;"><a href="/about/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">About</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/fellowship2026/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Fellowship 2026</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/projects/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Projects</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/blog/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Blog</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/joinus/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Join Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Connect</h4>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.75); margin:0 0 0.5rem; font-family:'Montserrat',sans-serif;">
+          <i class="fas fa-envelope" style="margin-right:0.5rem; color:#dc2626;"></i>
+          <a href="mailto:contact@codefornepal.org" style="color:rgba(255,255,255,0.75); text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">contact@codefornepal.org</a>
+        </p>
+        <div style="margin-top:1rem;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-linkedin-in" style="width:16px; text-align:center;"></i>
+            <span>www.linkedin.com</span>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-twitter" style="width:16px; text-align:center;"></i>
+            <span>twitter.com</span>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-facebook-f" style="width:16px; text-align:center;"></i>
+            <span>www.facebook.com</span>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-github" style="width:16px; text-align:center;"></i>
+            <span>github.com</span>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-instagram" style="width:16px; text-align:center;"></i>
+            <span>instagram.com</span>
+          </a>
+          
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div id="footerBottom" style="border-top:1px solid rgba(255,255,255,0.1); padding:1.5rem 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p style="margin:0; font-size:0.78rem; color:rgba(255,255,255,0.4); font-family:'Montserrat',sans-serif;">
+        &copy; 2026 Code for Nepal. All rights reserved.
+      </p>
+      <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+        <a href="/codeofconduct/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Code of Conduct</a>
+        <a href="/privacy/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- License line -->
+    
+    <div style="padding-bottom:1.5rem;">
+      <p style="margin:0; font-size:0.72rem; color:rgba(255,255,255,0.3); line-height:1.6; font-family:'Droid Serif','Georgia',serif;">This work is licensed under a Creative Commons Attribution - ShareAlike 3.0 License! <br>  Code for Nepal is a registered 501(c)(3) nonprofit organization. <br> EIN: 47-3620037</p>
+    </div>
+    
+
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  #footerGrid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  #footerBottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+</style>
+<!-- End Footer -->
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="/assets/js/jquery.easing.min.js"></script>
+
+	<!-- Contact form JavaScript -->
+	<script src="/assets/js/jqBootstrapValidation.js"></script>
+	<script src="/assets/js/contact_me.js"></script>
+
+	<!-- Custom scripts for this template -->
+	<script src="/assets/js/agency.min.js"></script>
+
+</body>
+
+</html>

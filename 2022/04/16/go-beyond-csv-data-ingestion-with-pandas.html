@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66983412-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-66983412-1');
+  </script>
+  <!-- End Google Analytics -->
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Community of volunteers helping address Nepal's challenges using civic tech to innovate, organize and advocate digital literacy">
+  <meta name="author" content="">
+  <meta name="keyword" content="code for nepal, c4n, volunteer, code, nepal" />
+  <meta property="og:locale" content="en_US">
+  <meta property="fb:pages" content="201272103415379">
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Go Beyond CSV: Data Ingestion with Pandas">
+<meta property="og:description" content="">
+<meta property="og:url" content="/2022/04/16/go-beyond-csv-data-ingestion-with-pandas.html">
+<meta property="og:site_name" content="Code for Nepal">
+<meta property="og:image" content="">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Go Beyond CSV: Data Ingestion with Pandas">
+<meta name="twitter:site" content="@codefornepal">
+<meta name="twitter:image" content="">
+<link rel="canonical" href="https://codefornepal.org/">
+<link rel="icon" href="/assets/img/c4n-icon.jpg">
+
+
+  <title>
+    
+    Go Beyond CSV: Data Ingestion with Pandas | Code for Nepal
+    
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="/assets/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- Custom fonts for this template -->
+  <link href="/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this theme -->
+  <link href="/assets/css/agency.css" rel="stylesheet">
+
+  <!-- Global responsive design tokens -->
+  <style>
+    /* Ensure nav always has proper top offset for fixed nav (64px) */
+    body { padding-top: 64px; }
+
+    /* Page layouts get extra top padding for content readability */
+    
+    #pagecontainer {
+      padding-top: 3rem;
+      padding-bottom: 5rem;
+    }
+    @media (max-width: 991px) {
+      #pagecontainer { padding-top: 2rem; }
+    }
+    
+
+    /* Responsive grid helpers used across all sections */
+    @media (max-width: 768px) {
+      [style*="grid-template-columns:35% 30% 35%"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="gap:4rem"] { gap: 2rem !important; }
+      [style*="padding:6rem 0"] { padding: 3.5rem 0 !important; }
+      [style*="padding:5rem 0"] { padding: 3rem 0 !important; }
+    }
+
+    /* Details/summary FAQ animation */
+    details > div {
+      animation: fadeInDown 0.2s ease;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+  </style>
+
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation -->
+<nav id="mainNav" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:#111827; box-shadow:0 2px 12px rgba(0,0,0,0.25); ">
+  <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:64px;">
+
+    <!-- Logo -->
+    <a href="/" style="display:flex; align-items:center; text-decoration:none; flex-shrink:0;">
+      
+      <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:44px; width:auto; display:block;">
+      
+    </a>
+
+    <!-- Desktop links -->
+    <div id="navDesktopLinks" style="display:flex; align-items:center; gap:0.25rem; flex:1; justify-content:flex-end;">
+      
+        
+          <a href="/about/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">About</a>
+        
+      
+        
+          <a href="/fellowship2026/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Fellowship</a>
+        
+      
+        
+          <a href="/projects/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Projects</a>
+        
+      
+        
+          <a href="/blog/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Blog</a>
+        
+      
+        
+          <a href="/joinus/"
+             style="color:white; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.5rem 0.9rem; border-radius:4px;"
+             onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Join Us</a>
+        
+      
+
+
+    </div>
+
+    <!-- Mobile hamburger button -->
+    <button id="navToggle" type="button" aria-label="Toggle navigation"
+            style="display:none; background:transparent; border:none; color:white; cursor:pointer; padding:0.5rem; line-height:1;"
+            onclick="(function(){var m=document.getElementById('navMobileMenu'); var open=(m.style.display==='block'); m.style.display=open?'none':'block';})()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div id="navMobileMenu" style="display:none; background:#1f2937; border-top:1px solid rgba(255,255,255,0.1); padding:1rem 1.5rem;">
+    
+      
+        <a href="/about/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">About</a>
+      
+    
+      
+        <a href="/fellowship2026/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Fellowship</a>
+      
+    
+      
+        <a href="/projects/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Projects</a>
+      
+    
+      
+        <a href="/blog/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Blog</a>
+      
+    
+      
+        <a href="/joinus/"
+           style="display:block; color:white; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; text-decoration:none; font-family:'Montserrat',sans-serif; padding:0.75rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Join Us</a>
+      
+    
+
+  </div>
+</nav>
+
+<style>
+@media (max-width: 767px) {
+  #navDesktopLinks { display: none !important; }
+  #navToggle { display: block !important; }
+}
+</style>
+<!-- End Navigation -->
+
+
+
+
+<div class="container blog" id="pagecontainer">
+  <div class="row">
+  <div class="col-md-12">
+    <h1 class="title">Go Beyond CSV: Data Ingestion with Pandas</h1>
+    <p>16 Apr 2022 - Mala Deep Upadhaya</p>
+    <p>
+      <p><strong>Mala Deep is a Business Intelligence Consultant, and community focused data citizen.</strong></p>
+
+<h1 id="go-beyond-csv-data-ingestion-with-pandas">Go Beyond CSV: Data Ingestion with Pandas</h1>
+
+<h2 id="data-will-not-always-come-to-you-in-csv">Data will not always come to you in CSV</h2>
+
+<p><img src="https://miro.medium.com/max/1400/1*YQ1pRMimXT-jX_mYHy8GhQ.png" alt="Pandas Read_CSV() data ingestion in Python" /></p>
+
+<p>Pandas read_csv() method. Image by the author.</p>
+
+<p>Ifyou are a complete beginner or think of yourself as a beginner to data engineering or data science, then you are totally familiar with the Jupyter notebook and the following command.</p>
+
+<p><strong>#importing dataset</strong></p>
+
+<p>df = pd.read_csv(“path/filename.extension”)</p>
+
+<p>Then you know how to acquire data in  <a href="https://docs.fileformat.com/spreadsheet/csv/">CSV (Comma Separated Values)</a>. After all, before you can analyze data, you first have to acquire it.</p>
+
+<p>From my experience and most of the tutorials/resources out there, they have always been written with working CSV files. So, when you go to work for a company, and someone gives you data in SQL and/or JSON, then you start to panic and create a self-image of  <em>“oh, this is going to be tough.”</em></p>
+
+<p>But, if you follow this blog, you can easily work with any sort of data in a jupyter notebook.</p>
+
+<blockquote>
+  <p><strong>Remember:</strong> Before you can analyze data, you first have to acquire it.</p>
+</blockquote>
+
+<p>Let’s get started. Data ingestion is the process of pulling data from a variety of sources into your system with the purpose of easily exploring, maintaining, and using it for your own use. Today, you will learn how to transfer data from various formats such as Excel, HTML, SQL, and JSON into a Pandas dataframe object using various Pandas methods (highlighted below as  <em>read_csv()</em>).</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*jHOtYNOWRoC61pVPeCv5kQ.png" alt="Pandas Read_CSV() Streamlined data ingestion in Python" /></p>
+
+<p>Pandas read_csv() method. Image by the author.</p>
+
+<h2 id="step-involved">Step Involved</h2>
+
+<p>To transfer such data format, into a Python DataFrame object, the following steps are taken:</p>
+
+<ol>
+  <li>Knowing from where and how you will pull data.</li>
+</ol>
+
+<p>Unless at until you have an idea of where your data is and in what format you will never going to bring it as DataFrame object. After that, if your data is residing on the server, then you will need the path, and URL to the file.</p>
+
+<ol>
+  <li><em>Use Pandas ‘</em><strong><em>read_x</em></strong><em>’ method</em></li>
+</ol>
+
+<p>For loading and converting CSV data into a DataFrame object, use  _read_csv()._You need to replace  <strong>x</strong>  with another.</p>
+
+<ol>
+  <li>Validate the data using a DataFrame object.</li>
+</ol>
+
+<p>Next, you need to verify whether the conversion was smooth.</p>
+
+<h2 id="for-excel">For Excel</h2>
+
+<p><a href="https://docs.fileformat.com/spreadsheet/">Excel sheets (spreadsheets)</a>  are still widely used in a variety of domains. Excel is widely used, from developing budgeting strategies to tracking daily student attendance.</p>
+
+<ul>
+  <li>method:  <em>read_excel()</em></li>
+  <li>extension/format:  <em>.xlsx</em>  or <em>.xls</em></li>
+</ul>
+
+<p>For now, you will be using  <a href="https://opendatanepal.com/dataset/preliminary-data-of-national-population-and-housing-census-2021">Preliminary Data of National Population and Housing Census 2021, Nepal</a>  dataset from  <a href="https://opendatanepal.com/">OpenDataNepal</a>. I have saved this dataset as n_epalcensusdata.xlsx_</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*p-kP__XLzF26gBFY7fKP8w.png" alt="Snapshot of Excel dataset. Image by author. Preliminary Data of National Population and Housing Census 2021, Nepal dataset from OpenDataNepal. Streamlined data ingestion in Python." /></p>
+
+<p>Snapshot of the Excel dataset. Image by the author.  <a href="https://opendatanepal.com/dataset/preliminary-data-of-national-population-and-housing-census-2021">Preliminary Data of National Population and Housing Census 2021, Nepal</a>  dataset from  <a href="https://opendatanepal.com/">OpenDataNepal</a>.</p>
+
+<p><strong>#import the Pandas library<br />
+**import pandas</strong>#import excel data and store as data_excel dataframe (no need to do df always)<br />
+<strong>data_excel = pd.read_excel(“n_epalcensusdata.xlsx_”)</strong>#view the dataset as pandas dataframe object<br />
+**data_excel.head()</p>
+
+<p>Output:</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*Ef44Ulu8OZ6019iYbywqFw.png" alt="Snapshot of Excel dataset. Image by author. Preliminary Data of National Population and Housing Census 2021, Nepal dataset from OpenDataNepal. Streamlined data ingestion in Python." /></p>
+
+<p>Output obtained from data_excel.head() as Pandas dataframe. Image by the author.</p>
+
+<p>If you have more than one sheet in your workbook then an additional parameter called  <em>sheet_name</em>  is needed.</p>
+
+<p>data_excel = pd.read_excel(“nepalcensusdata.xlsx”,sheet_name = 0)<br />
+data_excel.head()</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*YyRE7PVarQd8o4LCseiZHw.png" alt="Snapshot of Excel dataset. Image by author. Preliminary Data of National Population and Housing Census 2021, Nepal dataset from OpenDataNepal. Streamlined data ingestion in Python." /></p>
+
+<p>Pandas read_excel() method. Image by the author.</p>
+
+<p>In our case, we are importing the first sheet, thus it is given 0. The sheet numbers start at 0.</p>
+
+<h2 id="for-html">For HTML</h2>
+
+<p>If you are familiar with data scrapping (web scraping), then  <a href="https://pypi.org/project/beautifulsoup4/">Beautiful Soup</a>,  <a href="https://www.selenium.dev/">Selenium</a>, and  <a href="https://scrapy.org/">Scrapy</a>  are familiar to you. You inspect the HTML structure of the website and pull down the data. If you feel it is sometimes time-consuming or hectic, you can easily do that using the  <em>read_html()</em> method.</p>
+
+<ul>
+  <li>method: <em>read_html()</em></li>
+  <li>extension:  <em>.html</em></li>
+</ul>
+
+<p>From Wikipedia, we will extract a table from the  <strong><em>Money Heist</em></strong>  (Spanish:  <strong><em>Casa de Papel)</em></strong>  series on  <a href="https://www.netflix.com/np/Title/80192098">Netflix</a>  from the following url:  <a href="https://en.wikipedia.org/wiki/Money_Heist">https://en.wikipedia.org/wiki/Money_Heist</a></p>
+
+<p>We will be extracting the awards and nominations tables.</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*ynN7---8I48m2TDIC4gR3A.png" alt="Snapshot of Money Heist awards and nominations table from Wikipedia. Image by the author. Streamlined Data Ingestion in Python Pandas." /></p>
+
+<p>Snapshot of Money Heist awards and nominations table from  <a href="https://en.wikipedia.org/wiki/Money_Heist">Wikipedia</a>. Image by the author.</p>
+
+<p><strong>#import the Pandas library</strong><br />
+import pandas<strong>#import html data and store as data_html dataframe<br />
+**data_html = pd.read_html(“<a href="https://en.wikipedia.org/wiki/Money_Heist">https://en.wikipedia.org/wiki/Money_Heist</a>”)[1]</strong>#view the dataset as pandas dataframe object**<br />
+data_html.head()</p>
+
+<p>Output:</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*bmaziSMNp4NzLqzAO3AbVA.png" alt="Snapshot of Money Heist awards and nominations table from Wikipedia. Image by the author. Streamlined Data Ingestion in Python Pandas." /></p>
+
+<p>Output obtained from data_html.head() about awards and nominations of  <a href="https://en.wikipedia.org/wiki/Money_Heist">Netflix series Money Heist</a>  as Pandas dataframe. Image by author.</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*kesAJ6IxbV8DzVEI_-RZ0Q.png" alt="Streamlined Data Ingestion in Python Pandas. df_read_html() method example." /></p>
+
+<p>Pandas read_html() method. Image by the the author.</p>
+
+<p>Here, the initial output from the  <em>read_html()</em>  method is a list, and to convert that list into a dataframe, you have to use [0] at the end. So, here you have used [2] because, on the wikipedia page, you wanted to extract the awards and nominations table. Before this table, there were two more tables. One is called “infobox,” and the next is “Episodes” and to extract the infobox, you need to use [0] and for the episode table [1].</p>
+
+<p><img src="https://miro.medium.com/max/4540/1*UTOqktqRtaHp5Pe28XiDsw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/3848/1*CEmq3dL2uaoAst4afDHRzA.png" alt="" /></p>
+
+<p>Pandas read_html() method for ingesting different tables. Image by the the author.</p>
+
+<p>Remember that using  <em>read_html()</em>  is not a simple task.To get the exact table you are looking at, you need to play with your initial result without any frustration.</p>
+
+<h2 id="for-sql">For SQL</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/SQL">Structured Query Language (SQL)</a>  is a standard language for storing, manipulating, and retrieving data in databases. Reading data from a database is a two-step process. You first make a way to connect to a database, then query it with SQL and Pandas. In Python, to connect to a SQL server, you need to have either  <a href="https://docs.sqlalchemy.org/en/14/core/connections.html">SQLAlchemy connectabl</a>e or  <a href="https://sqlite.org/index.html">sqlite3</a>.</p>
+
+<ul>
+  <li>method:  <em>read_sql_query()</em></li>
+  <li>extension:  <em>.db</em></li>
+</ul>
+
+<p>Unlike other formats, for SQL you will have to write a few more lines of code. You first make a connection with the database. Then you will use Pandas’s  <em>read_sql_query()</em>  function to convert the output to a dataframe and write a SQL query to import all columns from the database.</p>
+
+<p>For now, the demo  <em>my_aquarium.db</em>  is created with a single table called “fish” with the following columns:  <em>name, species, tank_number.</em></p>
+
+<p><strong>#import the required libraries<br />
+**import sqlite3<br />
+import pandas</strong>#prepare a connection object and Pass the Database name as a parameter<br />
+<strong>connection = sqlite3.connect(“<em>aquarium.db</em>”)</strong>#use read_sql_query method and Pass SELECT query and connection object as parameter<br />
+<strong>data_Sql = pd.read_sql_query(“SELECT * FROM fish”, connection)</strong>#<strong>**view the dataset as pandas dataframe object<br />
+**print(data_Sql)</strong>#close the connection object<br />
+**connection.close()</p>
+
+<p>Output:</p>
+
+<p><img src="https://miro.medium.com/max/1032/1*pcOC534YBtdZOLNwvqViLw.png" alt="Output obtained from read_sql_query() with fish table as Pandas dataframe. Image by the author. Data Ingestion in Python Pandas." /></p>
+
+<p>Output obtained from  <code class="language-plaintext highlighter-rouge">read_sql_query</code>() with fish table as Pandas dataframe. Image by the author.</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*lEoW9iw_ZO8M7iVto2bQww.png" alt="Output obtained from read_sql_query() with fish table as Pandas dataframe. Image by the author. Data Ingestion in Python Pandas." /></p>
+
+<p>Pandas read_sql_query() method. Image by the author.</p>
+
+<p>Remember to close the database connection every time you open it.</p>
+
+<h1 id="for-json">For JSON</h1>
+
+<p><a href="https://www.json.org/json-en.html">JavaScript Object Notation (JSON)</a>  is the most common file format preferred by web developers and data engineers. It’s used widely across the internet for almost every single  <a href="https://aws.amazon.com/what-is/api/">API</a>  that you will access.</p>
+
+<ul>
+  <li>method:  <em>read_json()</em></li>
+  <li>extension: .<em>json</em></li>
+</ul>
+
+<p>You will use data from  <a href="https://www.kaggle.com/datasets/aditya2803/one-piece-anime">One Piece Anime from Kaggle</a>  stored as  <em>openPiece.json</em></p>
+
+<p><img src="https://miro.medium.com/max/1400/1*EFsNwpfbhHzWRU46L-wOdw.png" alt="Snapshot of One piece anime from Kaggle. Image by author. pd.read_json() example data ingestion in pandas python." /></p>
+
+<p>Snapshot of  <a href="https://www.kaggle.com/datasets/aditya2803/one-piece-anime">One piece anime from Kaggle.</a>  Image by author.</p>
+
+<p><strong>#import the Pandas library</strong><br />
+import pandas<strong>#import html data and store as data_json dataframe<br />
+**data_json = pd.read_json(“opnePiece.json”)</strong>#view the dataset as pandas dataframe object**<br />
+data_json.head()</p>
+
+<p>Output:</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*STt3j_EDKSW_4LeGRgv-RA.png" alt="Snapshot of One piece anime from Kaggle. Image by author. pd.read_json() example data ingestion in pandas python." /></p>
+
+<p>Output obtained from  <code class="language-plaintext highlighter-rouge">read_json</code>() as Pandas DataFrame. Image by the author.</p>
+
+<p><img src="https://miro.medium.com/max/1400/1*c_n7XHped9lB_bOBaFcj7A.png" alt="pd.read_json() example data ingestion in pandas python." /></p>
+
+<p>Pandas read_json() method. Image by the author.</p>
+
+<p>In this manner, you can obtain data in a variety of formats.</p>
+
+<blockquote>
+  <p>Remember: Acquiring data is just the beginning.</p>
+</blockquote>
+
+<p>Of course, acquiring data is just the beginning. After this, you need to explore data and play with it before you get deep into a data science project. But if you need ideas on where to go next, go with  <a href="https://medium.com/analytics-vidhya/exploratory-data-analysis-for-beginner-7488d587f1ec">exploratory data analysis for begineers.</a></p>
+
+<p>PS: I was able to delve deeper into this because of the  <a href="https://codefornepal.org/data-fellowship/">Data Fellowship</a> opportunity provided by  <a href="https://codefornepal.org/">Code For Nepal</a>.I’d like to express my gratitude to Code for Nepal for providing a fantastic opportunity to the Nepali community, as well as the <a href="https://www.datacamp.com/">DataCamp</a>for believing in Code for Nepal.</p>
+
+<p><em>If you have any queries regarding the article or want to work together on your next data engineering or data science project, ping me on</em> <a href="https://www.linkedin.com/in/maladeep/"><em>LinkedIn</em></a><em>.</em></p>
+
+<p>Originally published at  <a href="https://towardsdatascience.com/go-beyond-csv-data-ingestion-with-pandas-4c1a0dd4f2e2">Mala’s Medium blog</a></p>
+
+    </p>
+  </div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://codefornepal-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+	<!-- Footer -->
+<footer id="footer" style="background:#111827; color:white; padding:4rem 0 0;">
+  <div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+
+    <!-- Donation CTA strip -->
+    <div style="background:#1f2937; border-radius:8px; padding:1.5rem 2rem; margin-bottom:3rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="margin:0; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.9rem; color:white; text-transform:uppercase; letter-spacing:0.08em;">Support our mission</p>
+        <p style="margin:0.25rem 0 0; font-size:0.82rem; color:rgba(255,255,255,0.6); font-family:'Droid Serif','Georgia',serif;">Every contribution helps expand digital literacy in Nepal.</p>
+      </div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="display:inline;">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="A8L4MMC7NP5ZS"/>
+        <button type="submit"
+                style="background:#dc2626; color:white; padding:0.6rem 1.5rem; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; font-family:'Montserrat',sans-serif; border:none; border-radius:9999px; cursor:pointer; white-space:nowrap;"
+                onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#dc2626'">
+          Donate Now
+        </button>
+        <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" alt="" />
+      </form>
+    </div>
+
+    <!-- 3-column grid -->
+    <div id="footerGrid" style="display:grid; grid-template-columns:35% 30% 35%; gap:3rem; padding-bottom:3rem;">
+
+      <!-- Column 1: Logo + mission + social -->
+      <div>
+        
+        <a href="/" style="display:inline-block; margin-bottom:1rem;">
+          <img src="/assets/img/c4n_logo.png" alt="Code for Nepal" style="height:40px; width:auto; filter:brightness(0) invert(1);">
+        </a>
+        
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.7; margin:0 0 1.5rem; font-family:'Droid Serif','Georgia',serif;">
+          Increasing digital literacy and open data use to empower communities across Nepal.
+        </p>
+        <!-- Social icons -->
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-twitter"></i>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-github"></i>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; transition:background 0.2s;"
+             onmouseover="this.style.background='#dc2626'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.7)';">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          
+        </div>
+      </div>
+
+      <!-- Column 2: Quick links -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Quick Links</h4>
+        <ul style="list-style:none; margin:0; padding:0;">
+          <li style="margin-bottom:0.6rem;"><a href="/about/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">About</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/fellowship2026/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Fellowship 2026</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/projects/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Projects</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/blog/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Blog</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="/joinus/" style="color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.88rem; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Join Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div>
+        <h4 style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.15em; color:rgba(255,255,255,0.45); margin:0 0 1.25rem;">Connect</h4>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.75); margin:0 0 0.5rem; font-family:'Montserrat',sans-serif;">
+          <i class="fas fa-envelope" style="margin-right:0.5rem; color:#dc2626;"></i>
+          <a href="mailto:contact@codefornepal.org" style="color:rgba(255,255,255,0.75); text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">contact@codefornepal.org</a>
+        </p>
+        <div style="margin-top:1rem;">
+          
+          
+          <a href="https://www.linkedin.com/company/code-for-nepal/" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-linkedin-in" style="width:16px; text-align:center;"></i>
+            <span>www.linkedin.com</span>
+          </a>
+          
+          
+          
+          <a href="https://twitter.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-twitter" style="width:16px; text-align:center;"></i>
+            <span>twitter.com</span>
+          </a>
+          
+          
+          
+          <a href="https://www.facebook.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-facebook-f" style="width:16px; text-align:center;"></i>
+            <span>www.facebook.com</span>
+          </a>
+          
+          
+          
+          <a href="https://github.com/code4Nepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-github" style="width:16px; text-align:center;"></i>
+            <span>github.com</span>
+          </a>
+          
+          
+          
+          <a href="http://instagram.com/codefornepal" target="_blank" rel="noopener noreferrer"
+             style="display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.82rem; font-family:'Montserrat',sans-serif; margin-bottom:0.5rem;"
+             onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+            <i class="fab fa-instagram" style="width:16px; text-align:center;"></i>
+            <span>instagram.com</span>
+          </a>
+          
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div id="footerBottom" style="border-top:1px solid rgba(255,255,255,0.1); padding:1.5rem 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p style="margin:0; font-size:0.78rem; color:rgba(255,255,255,0.4); font-family:'Montserrat',sans-serif;">
+        &copy; 2026 Code for Nepal. All rights reserved.
+      </p>
+      <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+        <a href="/codeofconduct/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Code of Conduct</a>
+        <a href="/privacy/" target="_blank" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none; font-family:'Montserrat',sans-serif;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+      </div>
+    </div>
+
+    <!-- License line -->
+    
+    <div style="padding-bottom:1.5rem;">
+      <p style="margin:0; font-size:0.72rem; color:rgba(255,255,255,0.3); line-height:1.6; font-family:'Droid Serif','Georgia',serif;">This work is licensed under a Creative Commons Attribution - ShareAlike 3.0 License! <br>  Code for Nepal is a registered 501(c)(3) nonprofit organization. <br> EIN: 47-3620037</p>
+    </div>
+    
+
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  #footerGrid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  #footerBottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+</style>
+<!-- End Footer -->
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="/assets/js/jquery.easing.min.js"></script>
+
+	<!-- Contact form JavaScript -->
+	<script src="/assets/js/jqBootstrapValidation.js"></script>
+	<script src="/assets/js/contact_me.js"></script>
+
+	<!-- Custom scripts for this template -->
+	<script src="/assets/js/agency.min.js"></script>
+
+</body>
+
+</html>
