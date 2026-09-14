@@ -1,5 +1,3 @@
-'use client';
-
 import type { CSSProperties } from 'react';
 import { fellowship } from '@/data/fellowship';
 import { FELLOWSHIP_FORM_URL } from '@/lib/config';

@@ -1,5 +1,3 @@
-'use client';
-
 import type { ReactNode } from 'react';
 import { useReveal } from '@/components/layout/RevealProvider';
 

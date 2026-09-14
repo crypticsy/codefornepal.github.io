@@ -35,6 +35,6 @@ export const PAYPAL_BUTTON_ID = 'A8L4MMC7NP5ZS';
 
 /**
  * GA4 Measurement ID (G-XXXXXXX). The original UA-66983412-1 is a dead Universal
- * Analytics property. Supply a real ID via NEXT_PUBLIC_GA_ID to enable analytics.
+ * Analytics property. Supply a real ID via VITE_GA_ID to enable analytics.
  */
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID ?? '';
+export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_ID ?? '';

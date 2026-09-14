@@ -1,5 +1,3 @@
-'use client';
-
 import { testimonials } from '@/data/sitetext';
 
 /** Ported from _includes/sections/home/testimonials.html. */

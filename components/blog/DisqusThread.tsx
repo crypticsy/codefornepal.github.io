@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useRef } from 'react';
 import { DISQUS_SHORTNAME, site } from '@/lib/config';
 

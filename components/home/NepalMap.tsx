@@ -1,5 +1,3 @@
-'use client';
-
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { Map as LeafletMap, GeoJSON as LeafletGeoJSON, Layer, LeafletMouseEvent } from 'leaflet';

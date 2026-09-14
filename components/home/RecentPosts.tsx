@@ -1,6 +1,4 @@
-'use client';
-
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 export interface RecentPost {
   title: string;

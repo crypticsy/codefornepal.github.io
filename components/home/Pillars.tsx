@@ -1,5 +1,3 @@
-'use client';
-
 import { pillars } from '@/data/sitetext';
 
 /** Ported from _includes/sections/home/pillars.html. Also the hero's smooth-scroll target (#pillars). */

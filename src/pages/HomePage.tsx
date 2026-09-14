@@ -1,3 +1,4 @@
+import { Seo } from '@/components/layout/Seo';
 import { Nav } from '@/components/layout/Nav';
 import { Hero } from '@/components/home/Hero';
 import { HomeReveal } from '@/components/home/HomeReveal';
@@ -17,7 +18,7 @@ import { getHighlightedPosts, truncateWords } from '@/lib/posts';
  * #homepageRemainingContent reveal wrapper with the nine sections in fixed order:
  * pillars, programs, testimonials, impact, nepal_map, services, highlight, clients, sponsors.
  */
-export default function Home() {
+export function HomePage() {
   const highlighted = getHighlightedPosts(3).map((p) => ({
     title: p.title,
     url: p.url,
@@ -28,6 +29,7 @@ export default function Home() {
 
   return (
     <>
+      <Seo path="/" />
       <Nav reveal />
       <Hero />
       <HomeReveal>

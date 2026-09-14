@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, type CSSProperties } from 'react';
 import { site, FELLOWSHIP_FORM_URL } from '@/lib/config';
 import { header } from '@/data/sitetext';

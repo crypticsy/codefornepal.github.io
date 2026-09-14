@@ -1,6 +1,4 @@
-'use client';
-
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 const cards = [
   { icon: 'fab fa-slack', title: 'Slack', href: 'https://join.slack.com/t/codefornepal/shared_invite/zt-fm07r7gz-97iagKnDNJ3DbX8QKR6Bxg', desc: 'Say hello and introduce yourself to the community. Talk and collaborate with team members in real-time.', cta: 'Join Channel' },

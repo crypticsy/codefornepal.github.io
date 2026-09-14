@@ -1,42 +1,37 @@
-import type { Metadata } from 'next';
 import { site } from './config';
 
+export interface PageMeta {
+  title?: string;
+  description: string;
+  /** Absolute path like "/about/" or "/2017/04/slug/". */
+  canonical: string;
+  image?: string;
+  type: 'website' | 'article';
+}
+
 /**
- * Build per-page Metadata (title, description, canonical, Open Graph, Twitter).
- * Fixes the original defect where components/meta.html hardcoded the canonical to
- * the homepage on every page — here the canonical is per-page.
+ * Build the resolved per-page metadata consumed by <Seo>.
+ * Fixes the original defect where the canonical was hardcoded to the homepage
+ * on every page — here it is per-page.
  */
-export function buildMetadata(opts: {
+export function buildMeta(opts: {
   title?: string;
   description?: string;
-  /** Absolute path like "/about/" or "/2017/04/slug/". */
   path: string;
   image?: string;
   type?: 'website' | 'article';
-}): Metadata {
+}): PageMeta {
   const { title, description, path, image, type = 'website' } = opts;
-  const url = path;
-  const desc = description ?? site.description;
-  const ogImage = image ?? site.favicon;
-
   return {
     title,
-    description: desc,
-    alternates: { canonical: url },
-    openGraph: {
-      type,
-      title: title ?? site.title,
-      description: desc,
-      url,
-      siteName: site.title,
-      images: ogImage ? [ogImage] : undefined,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: title ?? site.title,
-      description: desc,
-      site: site.twitter,
-      images: ogImage ? [ogImage] : undefined,
-    },
+    description: description ?? site.description,
+    canonical: site.url + path,
+    image: image ?? site.favicon,
+    type,
   };
+}
+
+/** Full <title> string (mirrors the Next `%s | Code for Nepal` template). */
+export function pageTitle(title?: string): string {
+  return title ? `${title} | ${site.title}` : site.title;
 }

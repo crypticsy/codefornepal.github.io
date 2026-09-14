@@ -1,4 +1,4 @@
-name: Build and deploy Next.js site to GitHub Pages
+name: Build and deploy the Vite site to GitHub Pages
 
 on:
   push:
@@ -21,17 +21,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: yarn
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Build static site
-        run: npm run build
+        run: yarn build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Static export output (includes CNAME and .nojekyll from public/).
+          # Vite build output (includes CNAME and .nojekyll copied from public/).
           publish_dir: ./out

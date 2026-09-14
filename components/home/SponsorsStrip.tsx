@@ -1,5 +1,3 @@
-'use client';
-
 import { sponsors } from '@/data/sitetext';
 
 /** Ported from _includes/sections/home/sponsors.html. */

@@ -1,5 +1,3 @@
-'use client';
-
 import { services } from '@/data/sitetext';
 
 /** Ported from _includes/sections/home/services.html ("Our Work"). Shows all services. */

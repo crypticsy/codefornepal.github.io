@@ -1,6 +1,4 @@
-'use client';
-
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { FELLOWSHIP_FORM_URL } from '@/lib/config';
 
 /** Ported from _includes/sections/home/programs.html (content is hardcoded as in the original). */

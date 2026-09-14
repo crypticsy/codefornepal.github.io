@@ -1,6 +1,4 @@
-'use client';
-
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { site, PAYPAL_BUTTON_ID } from '@/lib/config';
 import { footer } from '@/data/sitetext';
 

@@ -1,7 +1,5 @@
-'use client';
-
 import { useState, type CSSProperties } from 'react';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { site } from '@/lib/config';
 import { navigation } from '@/data/navigation';
 import { useReveal } from './RevealProvider';
