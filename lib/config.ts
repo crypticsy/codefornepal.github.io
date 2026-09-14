@@ -19,7 +19,7 @@ export const site = {
 
 /** The single Google Form used by every fellowship "Apply" CTA (was duplicated 4× in templates). */
 export const FELLOWSHIP_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSfjd4VXYxSOxc707VXc9gwVJ2k8urkRR258AMFgD0eqDGpgWA/viewform';
+  'https://forms.gle/rQbrrEf9BVj1sX4m8';
 
 /** Data Crunch hackathon application (Devfolio). */
 export const HACKATHON_APPLY_URL = 'https://data-crunch.devfolio.co/';
