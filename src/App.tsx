@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { RevealProvider } from '@/components/layout/RevealProvider';
 import { Footer } from '@/components/layout/Footer';
+import { RouteLoader } from '@/components/layout/RouteLoader';
+import { PageTransition } from '@/components/layout/PageTransition';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { HomePage } from './pages/HomePage';
 
@@ -61,24 +63,26 @@ export function App() {
     <RevealProvider>
       <ScrollToTop />
       <TrailingSlashRedirect>
-        <Suspense fallback={null}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about/" element={<AboutPage />} />
-            <Route path="/projects/" element={<ProjectsPage />} />
-            <Route path="/fellowship2026/" element={<FellowshipPage />} />
-            <Route path="/data_crunch_hackathon_2024/" element={<HackathonPage />} />
-            <Route path="/joinus/" element={<JoinUsPage />} />
-            <Route path="/team/" element={<TeamPage />} />
-            <Route path="/blog/" element={<BlogPage />} />
-            <Route path="/page/:num/" element={<PaginatedBlogPage />} />
-            <Route path="/codeofconduct/" element={<CodeOfConductPage />} />
-            <Route path="/privacy/" element={<PrivacyPage />} />
-            <Route path="/404.html" element={<NotFoundPage />} />
-            {/* Blog posts: /YYYY/MM/DD/slug/ and explicit permalinks. */}
-            <Route path="/:y/:m/:d/:slug/" element={<PostPage />} />
-            <Route path="*" element={<PostPage />} />
-          </Routes>
+        <Suspense fallback={<RouteLoader />}>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about/" element={<AboutPage />} />
+              <Route path="/projects/" element={<ProjectsPage />} />
+              <Route path="/fellowship2026/" element={<FellowshipPage />} />
+              <Route path="/data_crunch_hackathon_2024/" element={<HackathonPage />} />
+              <Route path="/joinus/" element={<JoinUsPage />} />
+              <Route path="/team/" element={<TeamPage />} />
+              <Route path="/blog/" element={<BlogPage />} />
+              <Route path="/page/:num/" element={<PaginatedBlogPage />} />
+              <Route path="/codeofconduct/" element={<CodeOfConductPage />} />
+              <Route path="/privacy/" element={<PrivacyPage />} />
+              <Route path="/404.html" element={<NotFoundPage />} />
+              {/* Blog posts: /YYYY/MM/DD/slug/ and explicit permalinks. */}
+              <Route path="/:y/:m/:d/:slug/" element={<PostPage />} />
+              <Route path="*" element={<PostPage />} />
+            </Routes>
+          </PageTransition>
         </Suspense>
       </TrailingSlashRedirect>
       <Footer />

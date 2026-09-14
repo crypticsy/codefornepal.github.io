@@ -1,42 +1,4 @@
 import Link from '@/components/ui/Link';
-import { services } from '@/data/sitetext';
-
-/** Reproduces _includes/components/project.html — featured services as Bootstrap cards. */
-function ProjectServicesGrid() {
-  const featured = services.list.filter((s) => s.featured);
-  return (
-    <div className="row text-center justify-content-center">
-      {featured.map((service) => {
-        const card = (
-          <div className="service-item h-100 d-flex flex-column align-items-center justify-content-center p-3">
-            <span className="fa-stack fa-4x mb-3">
-              <i className="fas fa-circle fa-stack-2x text-primary" />
-              <i className={`${service.icon} fa-stack-1x fa-inverse`} />
-            </span>
-            <h4 className="service-heading mb-3">{service.name}</h4>
-            <p className="text-muted">{service.desc}</p>
-          </div>
-        );
-        return (
-          <div key={service.name} className="col-md-4 col-lg-3 mb-4">
-            {service.url ? (
-              <a
-                href={service.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-decoration-none text-dark d-block h-100"
-              >
-                {card}
-              </a>
-            ) : (
-              <div className="text-dark d-block h-100">{card}</div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 /** Ported from projects/index.html. */
 export function ProjectsContent() {
@@ -67,14 +29,18 @@ export function ProjectsContent() {
         </div>
       </section>
 
-      {/* Featured projects grid */}
-      {services.list.length > 0 && (
-        <section style={{ padding: '5rem 0', background: 'white' }}>
-          <div className="project-container">
-            <ProjectServicesGrid />
-          </div>
-        </section>
-      )}
+      {/* Featured projects grid — currently rebuilding our project list */}
+      <section style={{ padding: '5rem 0', background: 'white' }}>
+        <div className="project-container" style={{ textAlign: 'center' }}>
+          <i className="fas fa-tools" style={{ color: '#dc2626', fontSize: '2rem', marginBottom: '1.25rem' }} />
+          <h2 style={{ fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 700, color: '#111827', marginBottom: '0.75rem', fontFamily: "'Montserrat',sans-serif", letterSpacing: '-0.02em' }}>
+            We&apos;re working on it
+          </h2>
+          <p style={{ fontSize: '0.95rem', color: '#6b7280', lineHeight: 1.7, maxWidth: '500px', margin: '0 auto', fontFamily: "'Droid Serif','Georgia',serif" }}>
+            We&apos;re refreshing our project showcase. In the meantime, check out our open-source work directly on GitHub.
+          </p>
+        </div>
+      </section>
 
       {/* Contribute CTA */}
       <section style={{ padding: '4rem 0', background: '#111827' }}>

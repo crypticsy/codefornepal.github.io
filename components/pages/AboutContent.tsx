@@ -132,7 +132,7 @@ export function AboutContent() {
             <h2 style={{ fontSize: 'clamp(1.75rem,4vw,2.5rem)', fontWeight: 700, color: '#111827', marginBottom: '0.75rem', fontFamily: "'Montserrat',sans-serif", letterSpacing: '-0.02em' }}>Our Team</h2>
             <p style={{ fontSize: '0.95rem', color: '#6b7280', maxWidth: '500px', margin: '0 auto', fontFamily: "'Droid Serif','Georgia',serif", lineHeight: 1.7 }}>{team.text}</p>
           </div>
-          <div id="teamGrid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '2rem' }}>
+          <div id="teamGrid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', maxWidth: '760px', margin: '0 auto' }}>
             {team.people.map((person) => (
               <div key={person.name} style={{ textAlign: 'center' }}>
                 <div style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1rem', border: '3px solid #fee2e2', boxShadow: '0 0 0 4px #fff, 0 0 0 5px #f3f4f6' }}>

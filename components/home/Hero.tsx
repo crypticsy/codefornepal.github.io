@@ -178,7 +178,7 @@ export function Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: "url('/assets/img/header-bg.jpg')",
+          backgroundImage: "url('/assets/img/timeline/cover-hackathon.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

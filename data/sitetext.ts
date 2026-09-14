@@ -1,20 +1,6 @@
 /**
  * Ported from _data/sitetext.yml.
- *
- * One deliberate restructure vs the YAML: `services.list` items now carry explicit
- * { name, url, icon, desc, featured } fields instead of a Markdown-link title string
- * that templates parsed with `split:'href="'`. `featured` marks the three items the
- * Projects page shows (NepalMap, Sangraha, Digital Literacy); the home "Our Work"
- * grid still shows all of them.
  */
-
-export interface ServiceItem {
-  name: string;
-  url?: string;
-  icon: string;
-  desc: string;
-  featured: boolean;
-}
 
 export interface TimelineEvent {
   title: string;
@@ -55,51 +41,6 @@ export const header = {
     '2021/05/02/donate-to-save-lives-and-help-nepalis-fight-COVID-19-pandemic',
 };
 
-export const services = {
-  title: 'Our Work',
-  text: 'We use technology to create opportunity and drive positive change across Nepal.',
-  section: 'work',
-  list: [
-    {
-      name: 'NepalMap',
-      url: 'https://github.com/CodeforNepal/nepalmap_federal',
-      desc: 'Explore and understand Nepal using open government data — from demographics to development.',
-      icon: 'fas fa-map-marker-alt',
-      featured: true,
-    },
-    {
-      name: 'Sangraha',
-      url: 'https://github.com/CodeforNepal/akshara-project',
-      desc: 'Access Nepali poems and literature — preserving cultural heritage through technology.',
-      icon: 'fas fa-book-open',
-      featured: true,
-    },
-    {
-      name: 'Digital Literacy',
-      desc: 'Running workshops and online programs to expand digital skills across Nepal.',
-      icon: 'fas fa-laptop-code',
-      featured: true,
-    },
-    {
-      name: 'Open Data',
-      desc: "Making Nepal's civic and government data accessible, understandable, and actionable.",
-      icon: 'fas fa-database',
-      featured: false,
-    },
-    {
-      name: 'Fellowships',
-      desc: 'Training the next generation of Nepali data scientists and civic technologists.',
-      icon: 'fas fa-graduation-cap',
-      featured: false,
-    },
-    {
-      name: 'Community',
-      desc: 'Connecting 500+ volunteers across Nepal and the Nepali diaspora to collaborate and create.',
-      icon: 'fas fa-users',
-      featured: false,
-    },
-  ] as ServiceItem[],
-};
 
 export const portfolio = {
   title: 'Stories',
@@ -116,25 +57,33 @@ export const timeline = {
       title: 'Our humble beginnings',
       year: '2014',
       desc: 'Founders Mia and Ravi organized their first digital literacy workshop for young women in Kathmandu and registered Code for Nepal, as a non-profit in the US.',
-      image: '/assets/img/c4n_logo.png',
-      alt: '',
+      image: '/assets/img/timeline/humble-beginnings-1.jpg',
+      alt: 'Code for Nepal digital literacy workshop in Kathmandu',
       align: 'left',
     },
     {
       title: 'Responding to a historic crisis',
       year: '2015',
-      desc: 'When the devastating earthquakes struck Nepal, Code for Nepal community members mobilized a [digital response](http://www.nytimes.com/2015/05/02/world/asia/3-ways-nepalis-are-using-crowdsourcing-to-aid-in-quake-relief.html?_r=0) to help those in need and advocated for [data-driven](https://time.com/3845593/nepal-earthquake-response-data/) relief and recovery',
-      image: '/assets/img/data_fellowship_2026.jpg',
+      desc: 'When the devastating earthquakes struck Nepal, Code for Nepal community members mobilized a digital response to help those in need and advocated for data-driven relief and recovery',
+      image: '/assets/img/timeline/humble-beginnings-2.jpg',
       alt: '',
       align: 'right',
     },
     {
       title: 'Creating products and empowering aspiring tech professionals',
       year: '2016-2019',
-      desc: 'We launched open data and civic tech products, [organized conferences](https://digitalnepal.org/), and [hackathon](http://hackfornepal.org/), collaborated with partners such as [Purdue University](https://sbaniya.com/2017/03/09/featured-content-2/) and gave scholarships to young women and men.',
-      image: '/assets/img/c4n-icon.jpg',
-      alt: 'image alt text',
+      desc: 'We launched open data and civic tech products, organized conferences and hackathons, collaborated with partners such as Purdue University and gave scholarships to young women and men.',
+      image: '/assets/img/timeline/empowering-tech-1.jpg',
+      alt: 'Code for Nepal hackathon and scholarship program',
       align: 'left',
+    },
+    {
+      title: 'Scaling Digital Literacy',
+      year: '2020–Present',
+      desc: 'Our Data Fellowship, in partnership with DataCamp Donates, has provided thousands of Nepalis with free access to premium data training. We have grown our community through meetups, virtual events, expert talks, and the Data Crunch Hackathon 2024. In 2025 and 2026, we mentored students at Hack-अ-Thon, Nepal\'s first inter-school hackathon.\n<br><br>\nThe fellowship continues to expand with new learners and pathways to industry-recognized data certifications.',
+      image: '/assets/img/timeline/empowering-tech-2.jpg',
+      alt: 'Code for Nepal Data Fellowship and hackathon events',
+      align: 'right',
     },
   ] as TimelineEvent[],
   end: '[Join us](/joinus/) <br> and shape <br> our story!',

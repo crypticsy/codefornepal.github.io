@@ -111,7 +111,7 @@ export function Programs() {
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '2px' }}>
               <img
-                src="/assets/img/data_fellowship_2026.jpg"
+                src="/assets/img/data_fellowship_2026.png"
                 alt="Data Fellowship 2026"
                 style={{ width: '100%', display: 'block', objectFit: 'cover', maxHeight: '400px' }}
                 onError={(e) => {

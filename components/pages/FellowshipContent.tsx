@@ -55,11 +55,26 @@ const learningOutcomes = [
 ];
 
 const faqs = [
-  { q: 'Who is eligible to apply?', a: "Any Nepali is welcome to apply — whether you're a student, working professional, or someone looking to change careers. No prior data experience is required; we welcome complete beginners." },
-  { q: 'Is the fellowship really free?', a: "Yes! The Data Fellowship is completely free, thanks to DataCamp Donates. Fellows receive full access to DataCamp's premium platform at no cost." },
-  { q: 'How long is the fellowship?', a: 'The fellowship is self-paced. Fellows are expected to complete at least one DataCamp track within a few months. Most fellows complete the program within 3–6 months.' },
-  { q: 'What data skills can I learn?', a: 'DataCamp offers courses across Python, R, SQL, data visualization, machine learning, AI, data engineering, and business analytics. You choose the track that best fits your goals.' },
-  { q: 'Do I need to be in Nepal to participate?', a: "No! The fellowship is fully online and open to Nepalis worldwide — whether you're in Nepal or part of the diaspora abroad. All you need is internet access." },
+  { q: 'Who can apply?', a: 'Nepalis living in Nepal or abroad can apply. Applicants must have completed at least a high school degree or equivalent.' },
+  { q: 'Do I need a background in data or technology?', a: 'No. You do not need to be a data or technology professional. You should be interested in learning data and AI skills and be willing to complete the fellowship requirements.' },
+  { q: 'Do I need my own laptop?', a: 'Yes. You must have access to your own laptop or computer that you can use throughout the fellowship. You will need it to access DataCamp courses, complete assignments, participate in online sessions, and work on projects.' },
+  { q: 'Do I need an internet connection?', a: 'Yes. You need a reliable internet connection to access DataCamp, participate in online sessions, communicate through Slack, and complete fellowship activities.' },
+  { q: 'Is the fellowship free?', a: 'Yes. Selected fellows receive access to a DataCamp Premium subscription at no cost through the fellowship.' },
+  { q: 'Do I need to pay for DataCamp?', a: 'No. Selected fellows receive DataCamp Premium access through the fellowship. You do not need to purchase a DataCamp subscription for the fellowship.' },
+  { q: 'How long does the fellowship take?', a: 'You have 3 months to complete your assigned DataCamp course from the date you receive DataCamp access. Other activities, including assignments, soft skills training, and community activities, will take place during the fellowship.' },
+  { q: 'What happens after I apply?', a: 'Applications will be reviewed, and shortlisted applicants may be invited to an orientation program before final selection.' },
+  { q: 'When is the application deadline?', a: 'Applications are open on a rolling basis or until all available seats are filled.' },
+  { q: 'How many fellows will be selected?', a: 'The number of seats is limited, so applicants are encouraged to apply early.' },
+  { q: 'How will I communicate with other fellows and mentors?', a: 'The fellowship community will be available through Slack. Fellows can use Slack to communicate with other participants, ask questions, receive updates, and engage with mentors and the wider community.' },
+  { q: 'Will there be mentorship and support?', a: 'Yes. Fellows will receive support from industry and academic experts through online and offline activities. Mentorship and community support will also be available through Slack.' },
+  { q: 'What will I learn during the fellowship?', a: 'The fellowship is designed to help you develop data, AI, and digital skills. You will also gain experience through projects, assignments, community-based learning, and soft skills development.' },
+  { q: 'Will I receive a certificate?', a: 'Yes. Fellows who successfully complete all required phases will receive a digital certificate from Code for Nepal. You can also earn DataCamp certificates by completing eligible courses.' },
+  { q: 'Can students and working professionals apply?', a: 'Yes. Both students and working professionals who are interested in developing their data and AI skills are encouraged to apply.' },
+  { q: 'Can I apply if I live outside Nepal?', a: 'Yes. Nepalis living outside Nepal are welcome to apply.' },
+  { q: 'Do I need to be available full-time?', a: 'No. However, you must have enough time to complete your DataCamp course, assignments, training, and other fellowship activities within the required timeframe.' },
+  { q: 'Do I need to pay to apply?', a: 'No. There is no application fee for the fellowship.' },
+  { q: 'Who is especially encouraged to apply?', a: 'Nepali women, young people, and professionals are especially encouraged to apply. Applicants from Province 2 and Province 6 are also particularly encouraged.' },
+  { q: 'How can I reach out with more questions?', a: 'Join our Slack community and post in #data_fellowship_2026 — it is the official place for all fellowship questions, announcements, and events. Please avoid DMing us on LinkedIn or Facebook, as we may miss it.' },
 ];
 
 const summaryStyle: CSSProperties = {
@@ -105,6 +120,13 @@ export function FellowshipContent() {
         </div>
       </section>
 
+      {/* Fellowship image */}
+      <section style={{ padding: '3rem 0', background: 'white' }}>
+        <div style={{ maxWidth: '480px', margin: '0 auto', padding: '0 1.5rem' }}>
+          <img src="/assets/img/data_fellowship_2026.png" alt="Data Fellowship 2026" style={{ width: '100%', borderRadius: '2px', display: 'block' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
+        </div>
+      </section>
+
       {/* Program Overview */}
       <section style={{ padding: '5rem 0', background: 'white' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem' }}>
@@ -116,9 +138,6 @@ export function FellowshipContent() {
                 style={{ fontSize: '0.95rem', color: '#6b7280', lineHeight: 1.8, fontFamily: "'Droid Serif','Georgia',serif" }}
                 dangerouslySetInnerHTML={{ __html: `<p>${inlineMarkdown(fellowship.about.text)}</p>` }}
               />
-              <div style={{ marginTop: '2rem' }}>
-                <img src="/assets/img/data_fellowship_2026.jpg" alt="Data Fellowship 2026" style={{ width: '100%', borderRadius: '2px', display: 'block' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
-              </div>
             </div>
             <div>
               <p style={{ ...eyebrow, marginBottom: '0.75rem' }}>Program includes</p>
@@ -255,6 +274,13 @@ export function FellowshipContent() {
               </details>
             ))}
           </div>
+          <p style={{ textAlign: 'center', marginTop: '2.5rem', fontSize: '0.9rem', color: '#6b7280', fontFamily: "'Droid Serif','Georgia',serif" }}>
+            Still have questions? Join our{' '}
+            <a href="https://join.slack.com/t/codefornepal/shared_invite/zt-fm07r7gz-97iagKnDNJ3DbX8QKR6Bxg" target="_blank" rel="noopener noreferrer" style={{ color: '#dc2626', fontWeight: 600, textDecoration: 'none' }}>
+              Slack community
+            </a>{' '}
+            and post in #data_fellowship_2026 — it&apos;s the official place to reach out for anything fellowship-related.
+          </p>
         </div>
       </section>
 

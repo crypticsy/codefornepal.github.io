@@ -6,7 +6,7 @@ import { inlineMarkdown } from '@/lib/inline-markdown';
 /**
  * Ported from data_crunch_hackathon_2024/index.html + _includes/sections/hackathon/*.
  * Bootstrap-grid legacy design (brand blue #00ADEF). No interactivity → server component.
- * External images keep their original hotlinked URLs (self-hosting is a follow-up).
+ * Some external images still keep their original hotlinked URLs (self-hosting is a follow-up).
  */
 
 const faqs: { q: string; a: ReactNode }[] = [
@@ -50,9 +50,9 @@ export function HackathonContent() {
 
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Wikimedia_Hackathon_2013%2C_Amsterdam_-_Flickr_-_Sebastiaan_ter_Burg_%2828%29.jpg"
-            style={{ width: '800px' }}
-            alt=""
+            src="/assets/img/timeline/cover-hackathon.jpg"
+            style={{ width: '800px', maxWidth: '100%' }}
+            alt="Code for Nepal hackathon participants collaborating"
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '140px' }}>

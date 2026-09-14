@@ -7,7 +7,6 @@ import { Programs } from '@/components/home/Programs';
 import { Testimonials } from '@/components/home/Testimonials';
 import { ImpactStats } from '@/components/home/ImpactStats';
 import { NepalMap } from '@/components/home/NepalMap';
-import { ServicesGrid } from '@/components/home/ServicesGrid';
 import { RecentPosts } from '@/components/home/RecentPosts';
 import { PartnersStrip } from '@/components/home/PartnersStrip';
 import { SponsorsStrip } from '@/components/home/SponsorsStrip';
@@ -15,8 +14,8 @@ import { getHighlightedPosts, truncateWords } from '@/lib/posts';
 
 /**
  * Home page. Layout chain from _layouts/home.html: Nav (reveal mode), Hero, then the
- * #homepageRemainingContent reveal wrapper with the nine sections in fixed order:
- * pillars, programs, testimonials, impact, nepal_map, services, highlight, clients, sponsors.
+ * #homepageRemainingContent reveal wrapper with sections in fixed order:
+ * pillars, programs, testimonials, impact, nepal_map, highlight, clients, sponsors.
  */
 export function HomePage() {
   const highlighted = getHighlightedPosts(3).map((p) => ({
@@ -38,7 +37,6 @@ export function HomePage() {
         <Testimonials />
         <ImpactStats />
         <NepalMap />
-        <ServicesGrid />
         <RecentPosts posts={highlighted} />
         <PartnersStrip />
         <SponsorsStrip />

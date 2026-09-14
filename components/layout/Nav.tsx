@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react';
+import { useLocation } from 'react-router-dom';
 import Link from '@/components/ui/Link';
 import { site } from '@/lib/config';
 import { navigation } from '@/data/navigation';
@@ -37,6 +38,8 @@ const mobileLinkStyle: CSSProperties = {
 export function Nav({ reveal = false }: { reveal?: boolean }) {
   const { isScrolled } = useReveal();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isActive = (page: string) => pathname.startsWith(`/${page}/`);
 
   const revealed = !reveal || isScrolled;
 
@@ -101,17 +104,41 @@ export function Nav({ reveal = false }: { reveal?: boolean }) {
               justifyContent: 'flex-end',
             }}
           >
-            {navigation.map((item) => (
-              <Link
-                key={item.page}
-                href={`/${item.page}/`}
-                style={linkStyle}
-                onMouseOver={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.1)')}
-                onMouseOut={(e) => (e.currentTarget.style.background = 'transparent')}
-              >
-                {item.title}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const active = isActive(item.page);
+              return (
+                <Link
+                  key={item.page}
+                  href={`/${item.page}/`}
+                  style={{
+                    ...linkStyle,
+                    position: 'relative',
+                    color: active ? 'white' : linkStyle.color,
+                    background: active ? 'rgba(255,255,255,0.1)' : 'transparent',
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.1)')}
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.background = active ? 'rgba(255,255,255,0.1)' : 'transparent')
+                  }
+                >
+                  {item.title}
+                  {active && (
+                    <span
+                      aria-hidden
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: '0.9rem',
+                        right: '0.9rem',
+                        height: '2px',
+                        background: '#dc2626',
+                        borderRadius: '0 0 2px 2px',
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile hamburger */}
@@ -157,16 +184,24 @@ export function Nav({ reveal = false }: { reveal?: boolean }) {
             padding: '1rem 1.5rem',
           }}
         >
-          {navigation.map((item) => (
-            <Link
-              key={item.page}
-              href={`/${item.page}/`}
-              style={mobileLinkStyle}
-              onClick={() => setMobileOpen(false)}
-            >
-              {item.title}
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const active = isActive(item.page);
+            return (
+              <Link
+                key={item.page}
+                href={`/${item.page}/`}
+                style={{
+                  ...mobileLinkStyle,
+                  color: active ? '#dc2626' : mobileLinkStyle.color,
+                  paddingLeft: active ? '0.75rem' : 0,
+                  borderLeft: active ? '3px solid #dc2626' : '3px solid transparent',
+                }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
         </div>
       </nav>
 
